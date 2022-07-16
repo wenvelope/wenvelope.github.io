@@ -497,25 +497,18 @@
 ValueAnimator<span class="token punctuation">.</span><span class="token function">ofArgb</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//Int</span>
 ValueAnimator<span class="token punctuation">.</span><span class="token function">ofFloat</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//Float</span>
 ValueAnimator<span class="token punctuation">.</span><span class="token function">ofObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">//TypeEvaluator,object</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="开启一个动画"><a href="#开启一个动画" class="headerlink" title="开启一个动画"></a>开启一个动画</h3><pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin">        <span class="token keyword">val</span> anima <span class="token operator">=</span> ValueAnimator<span class="token punctuation">.</span><span class="token function">ofInt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apply</span> <span class="token punctuation">&#123;</span>
-            duration <span class="token operator">=</span> <span class="token number">3000</span>
-            <span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token punctuation">&#125;</span>
-```  
-<span class="token operator">&lt;</span><span class="token operator">/</span>br<span class="token operator">></span>
-<span class="token operator">></span> 这样我们就开启了一个简单的动画 动画值在<span class="token number">3000</span>毫秒内从<span class="token number">0</span>过渡到<span class="token number">1</span>  
-<span class="token operator">&lt;</span><span class="token operator">/</span>br<span class="token operator">></span>
+<h3 id="开启一个动画"><a href="#开启一个动画" class="headerlink" title="开启一个动画"></a>开启一个动画</h3></br>
+> 这样我们就开启了一个简单的动画 动画值在3000毫秒内从0过渡到1  
+</br>
 
-### 添加监听
-```kotlin
-        <span class="token keyword">val</span> anima <span class="token operator">=</span> ValueAnimator<span class="token punctuation">.</span><span class="token function">ofInt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apply</span> <span class="token punctuation">&#123;</span>
-            duration <span class="token operator">=</span> <span class="token number">3000</span>
-            addUpdateListener <span class="token punctuation">&#123;</span>
-                <span class="token keyword">val</span> value <span class="token operator">=</span> it<span class="token punctuation">.</span>animatedValue <span class="token keyword">as</span> Int
-                Log<span class="token punctuation">.</span><span class="token function">e</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"动画回调值"</span></span><span class="token punctuation">,</span>value<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-            <span class="token punctuation">&#125;</span>
-            <span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="添加监听"><a href="#添加监听" class="headerlink" title="添加监听"></a>添加监听</h3><pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> anima <span class="token operator">=</span> ValueAnimator<span class="token punctuation">.</span><span class="token function">ofInt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apply</span> <span class="token punctuation">&#123;</span>
+    duration <span class="token operator">=</span> <span class="token number">3000</span>
+    addUpdateListener <span class="token punctuation">&#123;</span>
+        <span class="token keyword">val</span> value <span class="token operator">=</span> it<span class="token punctuation">.</span>animatedValue <span class="token keyword">as</span> Int
+        Log<span class="token punctuation">.</span><span class="token function">e</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"动画回调值"</span></span><span class="token punctuation">,</span>value<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="更多设置"><a href="#更多设置" class="headerlink" title="更多设置"></a>更多设置</h3><pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> anima <span class="token operator">=</span> ValueAnimator<span class="token punctuation">.</span><span class="token function">ofInt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apply</span> <span class="token punctuation">&#123;</span>
     duration <span class="token operator">=</span> <span class="token number">3000</span>
     addUpdateListener <span class="token punctuation">&#123;</span>
