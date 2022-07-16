@@ -197,6 +197,13 @@
   </url>
   
   <url>
+    <loc>https://wenvelope.github.io/tags/Handler/</loc>
+    <lastmod>2022-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://wenvelope.github.io/tags/%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BB/</loc>
     <lastmod>2022-07-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -233,13 +240,6 @@
   
   <url>
     <loc>https://wenvelope.github.io/tags/SVGA/</loc>
-    <lastmod>2022-07-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenvelope.github.io/tags/Handler/</loc>
     <lastmod>2022-07-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
