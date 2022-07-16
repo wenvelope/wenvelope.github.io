@@ -529,19 +529,19 @@ ValueAnimator<span class="token punctuation">.</span><span class="token function
 </blockquote>
 <h3 id="ValueAnimator-ofObject-和-TypeEvaluator-接口"><a href="#ValueAnimator-ofObject-和-TypeEvaluator-接口" class="headerlink" title="ValueAnimator.ofObject() 和 TypeEvaluator 接口"></a>ValueAnimator.ofObject() 和 TypeEvaluator 接口</h3><p>TypeEvaluator  实现该接口从而设置动画从开始到结束的过渡方式</p>
 <p>来看一下基本使用</p>
-<pre class="line-numbers language-Kotlin" data-language="Kotlin"><code class="language-Kotlin">val anima &#x3D; ValueAnimator.ofObject(object :TypeEvaluator&lt;Int&gt;&#123;
-    var x &#x3D; 0F
-    override fun evaluate(fraction: Float , startValue: Int? , endValue: Int?): Int &#123;
-            x++;
-            val start &#x3D; startValue as Int
-            return  (x.pow(2)+start).toInt()
-    &#125;
-&#125;,0,0).apply &#123;
-    addUpdateListener &#123;
-        Log.e(&quot;wuhongru&quot;,it.animatedValue.toString())
-    &#125;
-    start()
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> anima <span class="token operator">=</span> ValueAnimator<span class="token punctuation">.</span><span class="token function">ofObject</span><span class="token punctuation">(</span><span class="token keyword">object</span> <span class="token operator">:</span>TypeEvaluator<span class="token operator">&lt;</span>Int<span class="token operator">></span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">0F</span>
+    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">evaluate</span><span class="token punctuation">(</span>fraction<span class="token operator">:</span> Float <span class="token punctuation">,</span> startValue<span class="token operator">:</span> Int<span class="token operator">?</span> <span class="token punctuation">,</span> endValue<span class="token operator">:</span> Int<span class="token operator">?</span><span class="token punctuation">)</span><span class="token operator">:</span> Int <span class="token punctuation">&#123;</span>
+            x<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">val</span> start <span class="token operator">=</span> startValue <span class="token keyword">as</span> Int
+            <span class="token keyword">return</span>  <span class="token punctuation">(</span>x<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">+</span>start<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apply</span> <span class="token punctuation">&#123;</span>
+    addUpdateListener <span class="token punctuation">&#123;</span>
+        Log<span class="token punctuation">.</span><span class="token function">e</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"wuhongru"</span></span><span class="token punctuation">,</span>it<span class="token punctuation">.</span>animatedValue<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>这里我们网ofObject()里面传入了三个参数   </p>
 <ul>
