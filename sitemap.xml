@@ -155,20 +155,6 @@
 
   
   <url>
-    <loc>https://wenvelope.github.io/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/</loc>
-    <lastmod>2022-07-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenvelope.github.io/tags/java/</loc>
-    <lastmod>2022-07-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://wenvelope.github.io/tags/android/</loc>
     <lastmod>2022-07-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -177,6 +163,27 @@
   
   <url>
     <loc>https://wenvelope.github.io/tags/Handler/</loc>
+    <lastmod>2022-07-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenvelope.github.io/tags/kotlin/</loc>
+    <lastmod>2022-07-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenvelope.github.io/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/</loc>
+    <lastmod>2022-07-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenvelope.github.io/tags/java/</loc>
     <lastmod>2022-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -198,13 +205,6 @@
   
   <url>
     <loc>https://wenvelope.github.io/tags/Linux/</loc>
-    <lastmod>2022-07-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenvelope.github.io/tags/%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BB/</loc>
     <lastmod>2022-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -239,14 +239,14 @@
   </url>
   
   <url>
-    <loc>https://wenvelope.github.io/tags/SVGA/</loc>
+    <loc>https://wenvelope.github.io/tags/%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BB/</loc>
     <lastmod>2022-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://wenvelope.github.io/tags/kotlin/</loc>
+    <loc>https://wenvelope.github.io/tags/SVGA/</loc>
     <lastmod>2022-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -255,14 +255,14 @@
 
   
   <url>
-    <loc>https://wenvelope.github.io/categories/%E7%AE%97%E6%B3%95/</loc>
+    <loc>https://wenvelope.github.io/categories/android/</loc>
     <lastmod>2022-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://wenvelope.github.io/categories/android/</loc>
+    <loc>https://wenvelope.github.io/categories/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2022-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
