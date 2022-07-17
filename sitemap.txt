@@ -1,6 +1,7 @@
 https://wenvelope.github.io/2022/07c521d2cf.html
 https://wenvelope.github.io/2022/073dd4e884.html
 https://wenvelope.github.io/2022/07d1b7c989.html
+https://wenvelope.github.io/2022/036f8f0f24.html
 https://wenvelope.github.io/2022/075626bfa5.html
 https://wenvelope.github.io/2022/06e6e2221d.html
 https://wenvelope.github.io/2022/0555d61869.html
@@ -8,7 +9,6 @@ https://wenvelope.github.io/2022/059d5068b0.html
 https://wenvelope.github.io/2022/05eb514289.html
 https://wenvelope.github.io/2022/053649741b.html
 https://wenvelope.github.io/2022/053649740b.html
-https://wenvelope.github.io/2022/036f8f0f24.html
 https://wenvelope.github.io/contact/index.html
 https://wenvelope.github.io/friends/index.html
 https://wenvelope.github.io/about/index.html
@@ -28,6 +28,7 @@ https://wenvelope.github.io/tags/Git/
 https://wenvelope.github.io/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/
 https://wenvelope.github.io/tags/SQLite/
 https://wenvelope.github.io/tags/SVGA/
+https://wenvelope.github.io/tags/kotlin/
 https://wenvelope.github.io/categories/%E7%AE%97%E6%B3%95/
 https://wenvelope.github.io/categories/android/
 https://wenvelope.github.io/categories/Linux/
