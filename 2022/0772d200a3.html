@@ -4,8 +4,8 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="SVGAImageView使用总结, 友利奈绪">
-    <meta name="description" content="静态使用和动态使用">
+    <meta name="keywords" content="AndroidUi单位转化工具类, 友利奈绪">
+    <meta name="description" content="dp px sp">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>SVGAImageView使用总结 | 友利奈绪</title>
+    <title>AndroidUi单位转化工具类 | 友利奈绪</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/wenvelope/wenvelope.github.io/logo.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/wenvelope/wenvelope.github.io/libs/awesome/css/all.min.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">SVGAImageView使用总结</h1>
+                    <h1 class="description center-align post-title">AndroidUi单位转化工具类</h1>
                 </div>
             </div>
         </div>
@@ -444,8 +444,8 @@
                                 <span class="chip bg-color">android</span>
                             </a>
                         
-                            <a href="/tags/SVGA/">
-                                <span class="chip bg-color">SVGA</span>
+                            <a href="/tags/kotlin/">
+                                <span class="chip bg-color">kotlin</span>
                             </a>
                         
                     </div>
@@ -469,7 +469,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-07-14
+                    2022-07-17
                 </div>
                 
 
@@ -493,20 +493,27 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="依赖导入"><a href="#依赖导入" class="headerlink" title="依赖导入"></a>依赖导入</h2><pre class="line-numbers language-gradle" data-language="gradle"><code class="language-gradle">allprojects &#123;
-    repositories &#123;
-        ...
-        maven &#123; url &#39;https:&#x2F;&#x2F;jitpack.io&#39; &#125;
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-gradle" data-language="gradle"><code class="language-gradle">implementation &#39;com.github.yyued:SVGAPlayer-Android:latest&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="静态使用"><a href="#静态使用" class="headerlink" title="静态使用"></a>静态使用</h2><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>com.opensource.svgaplayer.SVGAImageView</span>
-    <span class="token attr-name"><span class="token namespace">android:</span>layout_height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>match_parent<span class="token punctuation">"</span></span>
-    <span class="token attr-name"><span class="token namespace">android:</span>layout_width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>match_parent<span class="token punctuation">"</span></span>
-    <span class="token attr-name"><span class="token namespace">app:</span>source</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>xxx.svga<span class="token punctuation">"</span></span>
-    <span class="token attr-name"><span class="token namespace">app:</span>autoPlay</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span>
-    <span class="token attr-name"><span class="token namespace">android:</span>background</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#000<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <h2 id="常用单位转化"><a href="#常用单位转化" class="headerlink" title="常用单位转化"></a>常用单位转化</h2><pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">import</span> android<span class="token punctuation">.</span>content<span class="token punctuation">.</span>Context
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>util<span class="token punctuation">.</span>TypedValue
 
+<span class="token keyword">object</span> DisplayUtils <span class="token punctuation">&#123;</span>
+    <span class="token keyword">fun</span> <span class="token function">dp2px</span><span class="token punctuation">(</span>context<span class="token operator">:</span> Context <span class="token punctuation">,</span> dpVal<span class="token operator">:</span>Float<span class="token punctuation">)</span><span class="token operator">:</span> Int <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> TypedValue<span class="token punctuation">.</span><span class="token function">applyDimension</span><span class="token punctuation">(</span>TypedValue<span class="token punctuation">.</span>COMPLEX_UNIT_DIP<span class="token punctuation">,</span>dpVal<span class="token punctuation">,</span>context<span class="token punctuation">.</span>resources<span class="token punctuation">.</span>displayMetrics<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">fun</span> <span class="token function">sp2px</span><span class="token punctuation">(</span>context<span class="token operator">:</span>Context<span class="token punctuation">,</span>spVal<span class="token operator">:</span>Float<span class="token punctuation">)</span><span class="token operator">:</span>Int<span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> TypedValue<span class="token punctuation">.</span><span class="token function">applyDimension</span><span class="token punctuation">(</span>TypedValue<span class="token punctuation">.</span>COMPLEX_UNIT_SP<span class="token punctuation">,</span>spVal<span class="token punctuation">,</span>context<span class="token punctuation">.</span>resources<span class="token punctuation">.</span>displayMetrics<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">fun</span> <span class="token function">px2dp</span><span class="token punctuation">(</span>context<span class="token operator">:</span> Context<span class="token punctuation">,</span>pxValue<span class="token operator">:</span>Float<span class="token punctuation">)</span><span class="token operator">:</span>Int<span class="token punctuation">&#123;</span>
+        <span class="token keyword">val</span> scale <span class="token operator">=</span> context<span class="token punctuation">.</span>resources<span class="token punctuation">.</span>displayMetrics<span class="token punctuation">.</span>density
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>pxValue<span class="token operator">/</span>scale<span class="token operator">+</span><span class="token number">0.5F</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">fun</span> <span class="token function">px2sp</span><span class="token punctuation">(</span>context<span class="token operator">:</span>Context<span class="token punctuation">,</span>pxValue<span class="token operator">:</span>Float<span class="token punctuation">)</span><span class="token operator">:</span>Int<span class="token punctuation">&#123;</span>
+        <span class="token keyword">val</span> fontScale <span class="token operator">=</span> context<span class="token punctuation">.</span>resources<span class="token punctuation">.</span>displayMetrics<span class="token punctuation">.</span>scaledDensity
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>pxValue<span class="token operator">/</span>fontScale <span class="token operator">+</span> <span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -532,7 +539,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wenvelope.github.io/2022/073dd4e884.html">https://wenvelope.github.io/2022/073dd4e884.html</a>
+                    <a href="https://wenvelope.github.io/2022/0772d200a3.html">https://wenvelope.github.io/2022/0772d200a3.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -574,8 +581,8 @@
                                     <span class="chip bg-color">android</span>
                                 </a>
                             
-                                <a href="/tags/SVGA/">
-                                    <span class="chip bg-color">SVGA</span>
+                                <a href="/tags/kotlin/">
+                                    <span class="chip bg-color">kotlin</span>
                                 </a>
                             
                         </div>
@@ -1015,9 +1022,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/0772d200a3.html">
                     <div class="card-image">
@@ -1034,9 +1042,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1049,6 +1057,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1071,18 +1080,18 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/07c521d2cf.html">
+                <a href="/2022/073dd4e884.html">
                     <div class="card-image">
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Android属性动画">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="SVGAImageView使用总结">
                         
-                        <span class="card-title">Android属性动画</span>
+                        <span class="card-title">SVGAImageView使用总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ValueAnimator和ObjectAnimator
+                            静态使用和动态使用
                         
                     </div>
                     <div class="publish-info">
@@ -1108,12 +1117,8 @@
                         <span class="chip bg-color">android</span>
                     </a>
                     
-                    <a href="/tags/kotlin/">
-                        <span class="chip bg-color">kotlin</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BB/">
-                        <span class="chip bg-color">属性动画</span>
+                    <a href="/tags/SVGA/">
+                        <span class="chip bg-color">SVGA</span>
                     </a>
                     
                 </div>
