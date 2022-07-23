@@ -4,8 +4,8 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Git常用指令总结, 友利奈绪">
-    <meta name="description" content="Git常用指令">
+    <meta name="keywords" content="Room的基本使用, 友利奈绪">
+    <meta name="description" content="Room学习笔记">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Git常用指令总结 | 友利奈绪</title>
+    <title>Room的基本使用 | 友利奈绪</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/wenvelope/wenvelope.github.io/logo.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/wenvelope/wenvelope.github.io/libs/awesome/css/all.min.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Git常用指令总结</h1>
+                    <h1 class="description center-align post-title">Room的基本使用</h1>
                 </div>
             </div>
         </div>
@@ -440,12 +440,20 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Git/">
-                                <span class="chip bg-color">Git</span>
+                            <a href="/tags/android/">
+                                <span class="chip bg-color">android</span>
                             </a>
                         
-                            <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/">
-                                <span class="chip bg-color">命令行</span>
+                            <a href="/tags/kotlin/">
+                                <span class="chip bg-color">kotlin</span>
+                            </a>
+                        
+                            <a href="/tags/Room/">
+                                <span class="chip bg-color">Room</span>
+                            </a>
+                        
+                            <a href="/tags/jetpack/">
+                                <span class="chip bg-color">jetpack</span>
                             </a>
                         
                     </div>
@@ -456,8 +464,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Git/" class="post-category">
-                                Git
+                            <a href="/categories/android/" class="post-category">
+                                android
                             </a>
                         
                     </div>
@@ -469,7 +477,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-07-03
+                    2022-07-18
                 </div>
                 
 
@@ -493,84 +501,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>把学过的指令总结一下 方便查询</p>
-<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><pre class="line-numbers language-none"><code class="language-none">git init<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="添加文件到暂存区"><a href="#添加文件到暂存区" class="headerlink" title="添加文件到暂存区"></a>添加文件到暂存区</h3><pre class="line-numbers language-none"><code class="language-none">git add &lt;filepattern&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>filepattern 中 既可以写文件名的路径 也可以使用通配符 也可以是子目录<br></br><br>添加所有已更改文件</p>
-<pre class="line-numbers language-none"><code class="language-none">git add .<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="显示工作树状态"><a href="#显示工作树状态" class="headerlink" title="显示工作树状态"></a>显示工作树状态</h3><pre class="line-numbers language-none"><code class="language-none">git status [options]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>详细参数请看<br><a target="_blank" rel="noopener" href="https://git-scm.com/docs/git-status/zh_HANS-CN">https://git-scm.com/docs/git-status/zh_HANS-CN</a></p>
-<h3 id="提交暂存区的文件"><a href="#提交暂存区的文件" class="headerlink" title="提交暂存区的文件"></a>提交暂存区的文件</h3><pre class="line-numbers language-none"><code class="language-none">git commit -m &quot;提交信息&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="查看文件差异"><a href="#查看文件差异" class="headerlink" title="查看文件差异"></a>查看文件差异</h3><p>显示暂存区和工作区的差异</p>
-<pre class="line-numbers language-none"><code class="language-none">git diff [file]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>显示暂存区和上一次提交的差异</p>
-<pre class="line-numbers language-none"><code class="language-none">git diff --staged [file]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="显示提交记录"><a href="#显示提交记录" class="headerlink" title="显示提交记录"></a>显示提交记录</h3><pre class="line-numbers language-none"><code class="language-none">git show<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="撤销工作区还未提交到暂存区的修改"><a href="#撤销工作区还未提交到暂存区的修改" class="headerlink" title="撤销工作区还未提交到暂存区的修改"></a>撤销工作区还未提交到暂存区的修改</h3><pre class="line-numbers language-none"><code class="language-none">git restore [file]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="将暂存区的文件从暂存区取出-但是不更改工作区的状态"><a href="#将暂存区的文件从暂存区取出-但是不更改工作区的状态" class="headerlink" title="将暂存区的文件从暂存区取出 但是不更改工作区的状态"></a>将暂存区的文件从暂存区取出 但是不更改工作区的状态</h3><pre class="line-numbers language-none"><code class="language-none">git restore --staged [file]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h2 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h2><h3 id="显示分支列表-并且表明当前处于哪一分支"><a href="#显示分支列表-并且表明当前处于哪一分支" class="headerlink" title="显示分支列表 并且表明当前处于哪一分支"></a>显示分支列表 并且表明当前处于哪一分支</h3><pre class="line-numbers language-none"><code class="language-none">git branch
-
-&#x2F;&#x2F;git branch -a 还会追加列出远程分支<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h3><pre class="line-numbers language-none"><code class="language-none">git branch [name]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h3><pre class="line-numbers language-none"><code class="language-none">git branch -d [name]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h3><pre class="line-numbers language-none"><code class="language-none">git switch [name]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="修改分支名称"><a href="#修改分支名称" class="headerlink" title="修改分支名称"></a>修改分支名称</h3><pre class="line-numbers language-none"><code class="language-none">git branch -m [oldname] [newname]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;以name分支的改动为主 把当前分支与其合并
-git merge [name] 
-
-&#x2F;&#x2F;建议使用一下方式合并分支
-git merge --no--ff [name]
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="远程操作"><a href="#远程操作" class="headerlink" title="远程操作"></a>远程操作</h2><h3 id="克隆现有的远程数据库到本地"><a href="#克隆现有的远程数据库到本地" class="headerlink" title="克隆现有的远程数据库到本地"></a>克隆现有的远程数据库到本地</h3><pre class="line-numbers language-none"><code class="language-none">git clone &lt;url&gt;
-&#x2F;&#x2F;会自动追踪远程数据库
-可以直接执行 push fetch&#x2F;pull 等操作而不用加repository<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="显示远程数据库列表"><a href="#显示远程数据库列表" class="headerlink" title="显示远程数据库列表"></a>显示远程数据库列表</h3><pre class="line-numbers language-none"><code class="language-none">git remote 
-&#x2F;&#x2F;显示详细信息
-git remote -v<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="将修改推送到远程分支"><a href="#将修改推送到远程分支" class="headerlink" title="将修改推送到远程分支"></a>将修改推送到远程分支</h3><pre class="line-numbers language-none"><code class="language-none">git push<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="查看和读取远程分支的修改内容"><a href="#查看和读取远程分支的修改内容" class="headerlink" title="查看和读取远程分支的修改内容"></a>查看和读取远程分支的修改内容</h3><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;不保存到本地
-git fetch
-&#x2F;&#x2F;保存内容到本地
-git pull<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="Git-Config"><a href="#Git-Config" class="headerlink" title="Git Config"></a>Git Config</h2><h3 id="设置用户名和邮箱"><a href="#设置用户名和邮箱" class="headerlink" title="设置用户名和邮箱"></a>设置用户名和邮箱</h3><pre class="line-numbers language-none"><code class="language-none">git config --global user.name [name]
-git config --global user.email [address]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<h3 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h3><pre class="line-numbers language-none"><code class="language-none">git config --global http.proxy [代理主机地址]:[port]
-git config --global https.proxy [代理主机地址]:[port]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<h3 id="取消代理"><a href="#取消代理" class="headerlink" title="取消代理"></a>取消代理</h3><pre class="line-numbers language-none"><code class="language-none">git config --global --unset http.proxy
-
-git config --global --unset https.proxy<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><p>将未提交的修改推入栈顶 工作区回到上次提交之前的状态</p>
-<pre class="line-numbers language-none"><code class="language-none">git stash <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>推荐使用 添加信息</p>
-<pre class="line-numbers language-none"><code class="language-none">git stash save &quot;msg&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>看栈中保存的状态列表</p>
-<pre class="line-numbers language-none"><code class="language-none">git stash list<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>应用栈顶的修改 但是栈顶的记录还在</p>
-<pre class="line-numbers language-none"><code class="language-none">git stash apply<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>将栈顶推出 应用该修改</p>
-<pre class="line-numbers language-none"><code class="language-none">git stash pop<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
-
-
-
-
-
+                
                 
             </div>
             <hr/>
@@ -596,7 +527,7 @@ git config --global --unset https.proxy<span aria-hidden="true" class="line-numb
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wenvelope.github.io/2022/075626bfa5.html">https://wenvelope.github.io/2022/075626bfa5.html</a>
+                    <a href="https://wenvelope.github.io/2022/0757a8c014.html">https://wenvelope.github.io/2022/0757a8c014.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -634,12 +565,20 @@ git config --global --unset https.proxy<span aria-hidden="true" class="line-numb
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Git/">
-                                    <span class="chip bg-color">Git</span>
+                                <a href="/tags/android/">
+                                    <span class="chip bg-color">android</span>
                                 </a>
                             
-                                <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/">
-                                    <span class="chip bg-color">命令行</span>
+                                <a href="/tags/kotlin/">
+                                    <span class="chip bg-color">kotlin</span>
+                                </a>
+                            
+                                <a href="/tags/Room/">
+                                    <span class="chip bg-color">Room</span>
+                                </a>
+                            
+                                <a href="/tags/jetpack/">
+                                    <span class="chip bg-color">jetpack</span>
                                 </a>
                             
                         </div>
@@ -1083,23 +1022,23 @@ git config --global --unset https.proxy<span aria-hidden="true" class="line-numb
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/07d1b7c989.html">
+                <a href="/2022/0772d200a3.html">
                     <div class="card-image">
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="SQLite使用总结">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="AndroidUi单位转化工具类">
                         
-                        <span class="card-title">SQLite使用总结</span>
+                        <span class="card-title">AndroidUi单位转化工具类</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            SQLite使用流程
+                            dp px sp
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-11
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-18
                         </span>
                         <span class="publish-author">
                             
@@ -1124,10 +1063,6 @@ git config --global --unset https.proxy<span aria-hidden="true" class="line-numb
                         <span class="chip bg-color">kotlin</span>
                     </a>
                     
-                    <a href="/tags/SQLite/">
-                        <span class="chip bg-color">SQLite</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -1139,30 +1074,30 @@ git config --global --unset https.proxy<span aria-hidden="true" class="line-numb
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06e6e2221d.html">
+                <a href="/2022/07a0f14887.html">
                     <div class="card-image">
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="迷宫与陷阱">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="RecyclerView之ItemDecoration使用">
                         
-                        <span class="card-title">迷宫与陷阱</span>
+                        <span class="card-title">RecyclerView之ItemDecoration使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            刷题记录
+                            ItemDecoration
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-17
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
+                            <a href="/categories/android/" class="post-category">
+                                    android
                                 </a>
                             
                             
@@ -1172,16 +1107,20 @@ git config --global --unset https.proxy<span aria-hidden="true" class="line-numb
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/">
-                        <span class="chip bg-color">蓝桥杯</span>
+                    <a href="/tags/android/">
+                        <span class="chip bg-color">android</span>
                     </a>
                     
-                    <a href="/tags/java/">
-                        <span class="chip bg-color">java</span>
+                    <a href="/tags/kotlin/">
+                        <span class="chip bg-color">kotlin</span>
                     </a>
                     
-                    <a href="/tags/BFS/">
-                        <span class="chip bg-color">BFS</span>
+                    <a href="/tags/RecyclerView/">
+                        <span class="chip bg-color">RecyclerView</span>
+                    </a>
+                    
+                    <a href="/tags/ItemDecoration/">
+                        <span class="chip bg-color">ItemDecoration</span>
                     </a>
                     
                 </div>
