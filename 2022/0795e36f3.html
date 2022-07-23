@@ -4,8 +4,8 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="AndroidUi单位转化工具类, 友利奈绪">
-    <meta name="description" content="dp px sp">
+    <meta name="keywords" content="在activity中获取View的宽高, 友利奈绪">
+    <meta name="description" content="android开发艺术探索学习笔记">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>AndroidUi单位转化工具类 | 友利奈绪</title>
+    <title>在activity中获取View的宽高 | 友利奈绪</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/wenvelope/wenvelope.github.io/logo.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/wenvelope/wenvelope.github.io/libs/awesome/css/all.min.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">AndroidUi单位转化工具类</h1>
+                    <h1 class="description center-align post-title">在activity中获取View的宽高</h1>
                 </div>
             </div>
         </div>
@@ -444,8 +444,12 @@
                                 <span class="chip bg-color">android</span>
                             </a>
                         
-                            <a href="/tags/kotlin/">
-                                <span class="chip bg-color">kotlin</span>
+                            <a href="/tags/kotlinv/">
+                                <span class="chip bg-color">kotlinv</span>
+                            </a>
+                        
+                            <a href="/tags/view/">
+                                <span class="chip bg-color">view</span>
                             </a>
                         
                     </div>
@@ -469,7 +473,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-07-18
+                    2022-07-23
                 </div>
                 
 
@@ -493,27 +497,47 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="常用单位转化"><a href="#常用单位转化" class="headerlink" title="常用单位转化"></a>常用单位转化</h2><pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">import</span> android<span class="token punctuation">.</span>content<span class="token punctuation">.</span>Context
-<span class="token keyword">import</span> android<span class="token punctuation">.</span>util<span class="token punctuation">.</span>TypedValue
+                <p>View的measure过程和Activity的生命周期方法不是同步执行的，因此无法保证Activity执行了onCreate、onStart、onResume时某个View已经测量完毕了，如果View没有测量完毕，那么获得的宽高就是0。下面介绍几种获取宽高的方法。  </p>
+<h3 id="Activity-x2F-View的onWindowFocusChanged"><a href="#Activity-x2F-View的onWindowFocusChanged" class="headerlink" title="Activity&#x2F;View的onWindowFocusChanged"></a>Activity&#x2F;View的onWindowFocusChanged</h3><p>onWindowFocusChanged这个方法的含义是：View已经初始化完毕，宽高已经准备好了，这个时候去获取宽高是没有问题的。需要注意的是，onWindowFocusChanged会被调用多次，当Activity的窗口得到焦点和失去焦点的时候都会被调用一次。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onWindowFocusChanged</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> hasFocus<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onWindowFocusChanged</span><span class="token punctuation">(</span>hasFocus<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>hasFocus<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> width <span class="token operator">=</span> view<span class="token punctuation">.</span><span class="token function">getMeasuredWith</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> height <span class="token operator">=</span> view<span class="token punctuation">.</span><span class="token function">getMeasuredHeight</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token keyword">object</span> DisplayUtils <span class="token punctuation">&#123;</span>
-    <span class="token keyword">fun</span> <span class="token function">dp2px</span><span class="token punctuation">(</span>context<span class="token operator">:</span> Context <span class="token punctuation">,</span> dpVal<span class="token operator">:</span>Float<span class="token punctuation">)</span><span class="token operator">:</span> Int <span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> TypedValue<span class="token punctuation">.</span><span class="token function">applyDimension</span><span class="token punctuation">(</span>TypedValue<span class="token punctuation">.</span>COMPLEX_UNIT_DIP<span class="token punctuation">,</span>dpVal<span class="token punctuation">,</span>context<span class="token punctuation">.</span>resources<span class="token punctuation">.</span>displayMetrics<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">&#125;</span>
+<h3 id="view-post-runnable"><a href="#view-post-runnable" class="headerlink" title="view.post(runnable)"></a>view.post(runnable)</h3><p>通过post可以将一个runnable投递到消息队列的尾部，然后等待Looper调用此runnable的时候，View也已经初始化好了。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">onStart</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onStart</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    view<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Runnable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">int</span> width <span class="token operator">=</span> view<span class="token punctuation">.</span><span class="token function">getMeasuredWidth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> height <span class="token operator">=</span> view<span class="token punctuation">.</span><span class="token function">getMeasuredHeight</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="ViewTreeObserver"><a href="#ViewTreeObserver" class="headerlink" title="ViewTreeObserver"></a>ViewTreeObserver</h3><p>使用ViewTreeObserver的众多回调接口也可以，比如使用OnGlobalLayoutListener这个接口，当View树的状态发生改变或者View树内部的View的可见性发生改变的时候，onGlobalLayout方法将被回调，因此这是获取View的宽高一个很好的机会。值得注意的是，伴随着View树的状态改变等，onGlobalLayout会被多次调用。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">onStart</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onStart</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">ViewTreeObserver</span> observer <span class="token operator">=</span> tv<span class="token punctuation">.</span><span class="token function">getViewTreeObserver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    observer<span class="token punctuation">.</span><span class="token function">addOnGlobalLayoutListener</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ViewTreeObserver<span class="token punctuation">.</span>OnGlobalLayoutListener</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onGlobalLayout</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            tv<span class="token punctuation">.</span><span class="token function">getViewTreeObserver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">removeOnGlobalLayoutListener</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> width <span class="token operator">=</span> tv<span class="token punctuation">.</span><span class="token function">getMeasuredWidth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> height <span class="token operator">=</span> tv<span class="token punctuation">.</span><span class="token function">getMeasuredHeight</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-    <span class="token keyword">fun</span> <span class="token function">sp2px</span><span class="token punctuation">(</span>context<span class="token operator">:</span>Context<span class="token punctuation">,</span>spVal<span class="token operator">:</span>Float<span class="token punctuation">)</span><span class="token operator">:</span>Int<span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> TypedValue<span class="token punctuation">.</span><span class="token function">applyDimension</span><span class="token punctuation">(</span>TypedValue<span class="token punctuation">.</span>COMPLEX_UNIT_SP<span class="token punctuation">,</span>spVal<span class="token punctuation">,</span>context<span class="token punctuation">.</span>resources<span class="token punctuation">.</span>displayMetrics<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">fun</span> <span class="token function">px2dp</span><span class="token punctuation">(</span>context<span class="token operator">:</span> Context<span class="token punctuation">,</span>pxValue<span class="token operator">:</span>Float<span class="token punctuation">)</span><span class="token operator">:</span>Int<span class="token punctuation">&#123;</span>
-        <span class="token keyword">val</span> scale <span class="token operator">=</span> context<span class="token punctuation">.</span>resources<span class="token punctuation">.</span>displayMetrics<span class="token punctuation">.</span>density
-        <span class="token keyword">return</span> <span class="token punctuation">(</span>pxValue<span class="token operator">/</span>scale<span class="token operator">+</span><span class="token number">0.5F</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">fun</span> <span class="token function">px2sp</span><span class="token punctuation">(</span>context<span class="token operator">:</span>Context<span class="token punctuation">,</span>pxValue<span class="token operator">:</span>Float<span class="token punctuation">)</span><span class="token operator">:</span>Int<span class="token punctuation">&#123;</span>
-        <span class="token keyword">val</span> fontScale <span class="token operator">=</span> context<span class="token punctuation">.</span>resources<span class="token punctuation">.</span>displayMetrics<span class="token punctuation">.</span>scaledDensity
-        <span class="token keyword">return</span> <span class="token punctuation">(</span>pxValue<span class="token operator">/</span>fontScale <span class="token operator">+</span> <span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">&#125;</span>
 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -539,7 +563,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wenvelope.github.io/2022/0772d200a3.html">https://wenvelope.github.io/2022/0772d200a3.html</a>
+                    <a href="https://wenvelope.github.io/2022/0795e36f3.html">https://wenvelope.github.io/2022/0795e36f3.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -581,8 +605,12 @@
                                     <span class="chip bg-color">android</span>
                                 </a>
                             
-                                <a href="/tags/kotlin/">
-                                    <span class="chip bg-color">kotlin</span>
+                                <a href="/tags/kotlinv/">
+                                    <span class="chip bg-color">kotlinv</span>
+                                </a>
+                            
+                                <a href="/tags/view/">
+                                    <span class="chip bg-color">view</span>
                                 </a>
                             
                         </div>
@@ -1022,9 +1050,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/0795e36f3.html">
                     <div class="card-image">
@@ -1041,9 +1070,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-23
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-23
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1056,6 +1085,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1082,18 +1112,18 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/0757a8c014.html">
+                <a href="/2022/0772d200a3.html">
                     <div class="card-image">
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Room的基本使用">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="AndroidUi单位转化工具类">
                         
-                        <span class="card-title">Room的基本使用</span>
+                        <span class="card-title">AndroidUi单位转化工具类</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Room学习笔记
+                            dp px sp
                         
                     </div>
                     <div class="publish-info">
@@ -1121,14 +1151,6 @@
                     
                     <a href="/tags/kotlin/">
                         <span class="chip bg-color">kotlin</span>
-                    </a>
-                    
-                    <a href="/tags/Room/">
-                        <span class="chip bg-color">Room</span>
-                    </a>
-                    
-                    <a href="/tags/jetpack/">
-                        <span class="chip bg-color">jetpack</span>
                     </a>
                     
                 </div>

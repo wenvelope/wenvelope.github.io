@@ -2,7 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://wenvelope.github.io/2022/075626bfa5.html</loc>
+    <loc>https://wenvelope.github.io/2022/0795e36f3.html</loc>
+    
+    <lastmod>2022-07-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenvelope.github.io/2022/07a0f14887.html</loc>
     
     <lastmod>2022-07-23</lastmod>
     
@@ -13,7 +22,16 @@
   <url>
     <loc>https://wenvelope.github.io/2022/0757a8c014.html</loc>
     
-    <lastmod>2022-07-22</lastmod>
+    <lastmod>2022-07-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenvelope.github.io/2022/075626bfa5.html</loc>
+    
+    <lastmod>2022-07-23</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -30,15 +48,6 @@
   
   <url>
     <loc>https://wenvelope.github.io/2022/07c521d2cf.html</loc>
-    
-    <lastmod>2022-07-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenvelope.github.io/2022/07a0f14887.html</loc>
     
     <lastmod>2022-07-17</lastmod>
     
@@ -302,6 +311,20 @@
   
   <url>
     <loc>https://wenvelope.github.io/tags/jetpack/</loc>
+    <lastmod>2022-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenvelope.github.io/tags/kotlinv/</loc>
+    <lastmod>2022-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenvelope.github.io/tags/view/</loc>
     <lastmod>2022-07-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

@@ -1,8 +1,9 @@
-https://wenvelope.github.io/2022/075626bfa5.html
+https://wenvelope.github.io/2022/0795e36f3.html
+https://wenvelope.github.io/2022/07a0f14887.html
 https://wenvelope.github.io/2022/0757a8c014.html
+https://wenvelope.github.io/2022/075626bfa5.html
 https://wenvelope.github.io/2022/0772d200a3.html
 https://wenvelope.github.io/2022/07c521d2cf.html
-https://wenvelope.github.io/2022/07a0f14887.html
 https://wenvelope.github.io/2022/073dd4e884.html
 https://wenvelope.github.io/2022/07d1b7c989.html
 https://wenvelope.github.io/2022/036f8f0f24.html
@@ -36,6 +37,8 @@ https://wenvelope.github.io/tags/ItemDecoration/
 https://wenvelope.github.io/tags/%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BB/
 https://wenvelope.github.io/tags/Room/
 https://wenvelope.github.io/tags/jetpack/
+https://wenvelope.github.io/tags/kotlinv/
+https://wenvelope.github.io/tags/view/
 https://wenvelope.github.io/categories/Linux/
 https://wenvelope.github.io/categories/android/
 https://wenvelope.github.io/categories/%E7%AE%97%E6%B3%95/
