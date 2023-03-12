@@ -518,16 +518,17 @@ epochs<span class="token punctuation">.</span>apply_baseline<span class="token p
 <h2 id="降低采样率"><a href="#降低采样率" class="headerlink" title="降低采样率"></a>降低采样率</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#一般为感兴趣的频率的两倍以上 例如我想分析50hz的波</span>
 epochs_resampled <span class="token operator">=</span> epochs<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>resample<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span>npad<span class="token operator">=</span><span class="token string">'auto'</span><span class="token punctuation">)</span>
 ```  
-<span class="token operator">></span> 以上为处理的一般步骤
+<span class="token operator">&lt;</span><span class="token operator">/</span>br<span class="token operator">></span>  
 
-<span class="token comment">## 插值坏导</span>
+<span class="token operator">></span> 以上为处理的一般步骤  
+
+<span class="token comment">## 插值坏导  </span>
 
 <span class="token comment">## ICA 去除伪迹</span>
 
-
 <span class="token comment">## 叠加求平均</span>
 ```python
-evoked <span class="token operator">=</span> epochs<span class="token punctuation">.</span>average<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+evoked <span class="token operator">=</span> epochs<span class="token punctuation">.</span>average<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="用小波变换来分析时频"><a href="#用小波变换来分析时频" class="headerlink" title="用小波变换来分析时频"></a>用小波变换来分析时频</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">freqs <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">50</span><span class="token punctuation">)</span>
 power <span class="token operator">=</span> mne<span class="token punctuation">.</span>time_frequency<span class="token punctuation">.</span>tfr_morlet<span class="token punctuation">(</span>evoked<span class="token punctuation">,</span>freqs<span class="token operator">=</span>freqs<span class="token punctuation">,</span>n_cycles <span class="token operator">=</span> freqs<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">,</span>return_itc <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">)</span>
