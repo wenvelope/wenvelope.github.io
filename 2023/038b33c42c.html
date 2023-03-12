@@ -4,8 +4,8 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="android 关闭硬件加速, 友利奈绪">
-    <meta name="description" content="硬件加速可能会导致部分自定义view不兼容">
+    <meta name="keywords" content="使用MNE处理脑电数据(1), 友利奈绪">
+    <meta name="description" content="基本步骤">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>android 关闭硬件加速 | 友利奈绪</title>
+    <title>使用MNE处理脑电数据(1) | 友利奈绪</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/wenvelope/wenvelope.github.io/logo.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/wenvelope/wenvelope.github.io/libs/awesome/css/all.min.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">android 关闭硬件加速</h1>
+                    <h1 class="description center-align post-title">使用MNE处理脑电数据(1)</h1>
                 </div>
             </div>
         </div>
@@ -440,12 +440,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/android/">
-                                <span class="chip bg-color">android</span>
+                            <a href="/tags/MNE/">
+                                <span class="chip bg-color">MNE</span>
                             </a>
                         
-                            <a href="/tags/hardwareAccelerate/">
-                                <span class="chip bg-color">hardwareAccelerate</span>
+                            <a href="/tags/python/">
+                                <span class="chip bg-color">python</span>
                             </a>
                         
                     </div>
@@ -456,8 +456,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/android/" class="post-category">
-                                android
+                            <a href="/categories/BCI/" class="post-category">
+                                BCI
                             </a>
                         
                     </div>
@@ -469,7 +469,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-03-07
+                    2023-03-08
                 </div>
                 
 
@@ -493,28 +493,55 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="硬件加速"><a href="#硬件加速" class="headerlink" title="硬件加速"></a>硬件加速</h2><p>targetApi &gt;&#x3D;14 的时候硬件加速为默认启动状态 但是并非所有的2D绘制操作都支持硬件加速 所以有的时候需要手动关闭</p>
-<h2 id="控制硬件加速"><a href="#控制硬件加速" class="headerlink" title="控制硬件加速"></a>控制硬件加速</h2><p>可以在以下四个级别控制硬件加速  </p>
-<ul>
-<li>Application</li>
-<li>Activity</li>
-<li>window</li>
-<li>view</li>
-</ul>
-<h3 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h3><p>在清单文件中</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>application</span> <span class="token attr-name"><span class="token namespace">android:</span>hardwareAcclerated</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token attr-name">...</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h3><p>在清单文件中 单独关闭某个activity的硬件加速</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>activity</span> <span class="token attr-name"><span class="token namespace">android:</span>hardwareAccelerated</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>false<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="window"><a href="#window" class="headerlink" title="window"></a>window</h2><p>在activity中</p>
-<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin">只可以开启 不能停用
-window<span class="token punctuation">.</span><span class="token function">setFlags</span><span class="token punctuation">(</span>
-    WindowManager<span class="token punctuation">.</span>LayoutParams<span class="token punctuation">.</span>FLAG<span class="token punctuation">.</span>HARDWARE_ACCLERATED<span class="token punctuation">,</span>
-    WindowManager<span class="token punctuation">.</span>LayoutParams<span class="token punctuation">.</span>FLAG_HARDWARE_ACCLERATED
-<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="view"><a href="#view" class="headerlink" title="view"></a>view</h2><p>只可以停用 不能开启</p>
-<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin">mBinding<span class="token punctuation">.</span>view<span class="token punctuation">.</span><span class="token function">setLayerType</span><span class="token punctuation">(</span>View<span class="token punctuation">.</span>LAYER_TYPE_SOFTWARE<span class="token punctuation">,</span><span class="token keyword">null</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <h2 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h2><p> pycharm 专业版 mne 1.3.1   </p>
+<h2 id="导入相关库"><a href="#导入相关库" class="headerlink" title="导入相关库"></a>导入相关库</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> mne
+<span class="token keyword">from</span> pathlib impot Path
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+<span class="token operator">%</span>matplotlib qt
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">raw_path <span class="token operator">=</span> <span class="token string">"./12whr/day3/graz2/2.cnt"</span>
+raw_path <span class="token operator">=</span> Path<span class="token punctuation">(</span>raw_path<span class="token punctuation">)</span>
+raw <span class="token operator">=</span> mne<span class="token punctuation">.</span>io<span class="token punctuation">.</span>read_raw_cnt<span class="token punctuation">(</span>raw_path<span class="token punctuation">,</span>preload<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="选取感兴趣的导联"><a href="#选取感兴趣的导联" class="headerlink" title="选取感兴趣的导联"></a>选取感兴趣的导联</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">raw<span class="token punctuation">.</span>pick_channels<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'C3'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><a target="_blank" rel="noopener" href="https://developer.android.com/guide/topics/graphics/hardware-accel?hl=zh-cn#unsupported">不受支持的绘制操作</a></p>
+<h2 id="滤波"><a href="#滤波" class="headerlink" title="滤波"></a>滤波</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">raw<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>l_freq<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>h_freq<span class="token operator">=</span><span class="token number">50</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="分割成Epochs"><a href="#分割成Epochs" class="headerlink" title="分割成Epochs"></a>分割成Epochs</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">events<span class="token punctuation">,</span>event_id <span class="token operator">=</span> mne<span class="token punctuation">.</span>events_from_annotations<span class="token punctuation">(</span>raw<span class="token punctuation">)</span>
+event_id <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span>left<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>right<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+epochs <span class="token operator">=</span> mne<span class="token punctuation">.</span>Epochs<span class="token punctuation">(</span>raw<span class="token punctuation">,</span>events <span class="token operator">=</span> events<span class="token punctuation">,</span>event_id <span class="token operator">=</span> event_id<span class="token punctuation">,</span>tmin <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">0.5</span><span class="token punctuation">,</span>tmax <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">,</span>preload <span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="基线校正"><a href="#基线校正" class="headerlink" title="基线校正"></a>基线校正</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">## 将整个事件前的时间窗口作为基线</span>
+baseline <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token boolean">None</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span>
+epochs<span class="token punctuation">.</span>apply_baseline<span class="token punctuation">(</span>baseline<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="重参考"><a href="#重参考" class="headerlink" title="重参考"></a>重参考</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">epochs<span class="token punctuation">.</span>set_eeg_reference<span class="token punctuation">(</span>ref_channels <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'M1'</span><span class="token punctuation">,</span><span class="token string">'M2'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment">#设置ref_channels为 None 将Epochs数据参考到平均参考</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="降低采样率"><a href="#降低采样率" class="headerlink" title="降低采样率"></a>降低采样率</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#一般为感兴趣的频率的两倍以上 例如我想分析50hz的波</span>
+epochs_resampled <span class="token operator">=</span> epochs<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>resample<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span>npad<span class="token operator">=</span><span class="token string">'auto'</span><span class="token punctuation">)</span>
+```  
+<span class="token operator">></span> 以上为处理的一般步骤
+
+<span class="token comment">## 插值坏导</span>
+
+<span class="token comment">## ICA 去除伪迹</span>
+
+
+<span class="token comment">## 叠加求平均</span>
+```python
+evoked <span class="token operator">=</span> epochs<span class="token punctuation">.</span>average<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="用小波变换来分析时频"><a href="#用小波变换来分析时频" class="headerlink" title="用小波变换来分析时频"></a>用小波变换来分析时频</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">freqs <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">50</span><span class="token punctuation">)</span>
+power <span class="token operator">=</span> mne<span class="token punctuation">.</span>time_frequency<span class="token punctuation">.</span>tfr_morlet<span class="token punctuation">(</span>evoked<span class="token punctuation">,</span>freqs<span class="token operator">=</span>freqs<span class="token punctuation">,</span>n_cycles <span class="token operator">=</span> freqs<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">,</span>return_itc <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">)</span>
+
+<span class="token operator">//</span> 画图
+fig<span class="token punctuation">,</span> ax <span class="token operator">=</span> plt<span class="token punctuation">.</span>subplots<span class="token punctuation">(</span><span class="token punctuation">)</span>
+im <span class="token operator">=</span> ax<span class="token punctuation">.</span>pcolormesh<span class="token punctuation">(</span>power<span class="token punctuation">.</span>times<span class="token punctuation">,</span> power<span class="token punctuation">.</span>freqs<span class="token punctuation">,</span> power<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> cmap<span class="token operator">=</span><span class="token string">'jet'</span><span class="token punctuation">,</span>vmin<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1.5</span><span class="token operator">*</span><span class="token number">1e-9</span><span class="token punctuation">,</span>vmax<span class="token operator">=</span><span class="token number">1.5</span><span class="token operator">*</span><span class="token number">1e-9</span><span class="token punctuation">)</span>
+ax<span class="token punctuation">.</span>set_xlabel<span class="token punctuation">(</span><span class="token string">'Time (s)'</span><span class="token punctuation">)</span>
+ax<span class="token punctuation">.</span>set_title<span class="token punctuation">(</span><span class="token string">"C4_right"</span><span class="token punctuation">)</span>
+ax<span class="token punctuation">.</span>set_ylabel<span class="token punctuation">(</span><span class="token string">'Frequency (Hz)'</span><span class="token punctuation">)</span>
+cbar <span class="token operator">=</span> fig<span class="token punctuation">.</span>colorbar<span class="token punctuation">(</span>im<span class="token punctuation">)</span>
+cbar<span class="token punctuation">.</span>set_label<span class="token punctuation">(</span><span class="token string">'Power'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -541,7 +568,7 @@ window<span class="token punctuation">.</span><span class="token function">setFl
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wenvelope.github.io/2023/03c1aa7b93.html">https://wenvelope.github.io/2023/03c1aa7b93.html</a>
+                    <a href="https://wenvelope.github.io/2023/038b33c42c.html">https://wenvelope.github.io/2023/038b33c42c.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -579,12 +606,12 @@ window<span class="token punctuation">.</span><span class="token function">setFl
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/android/">
-                                    <span class="chip bg-color">android</span>
+                                <a href="/tags/MNE/">
+                                    <span class="chip bg-color">MNE</span>
                                 </a>
                             
-                                <a href="/tags/hardwareAccelerate/">
-                                    <span class="chip bg-color">hardwareAccelerate</span>
+                                <a href="/tags/python/">
+                                    <span class="chip bg-color">python</span>
                                 </a>
                             
                         </div>
@@ -1024,9 +1051,10 @@ window<span class="token punctuation">.</span><span class="token function">setFl
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2023/038b33c42c.html">
                     <div class="card-image">
@@ -1043,9 +1071,9 @@ window<span class="token punctuation">.</span><span class="token function">setFl
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-08
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1058,6 +1086,7 @@ window<span class="token punctuation">.</span><span class="token function">setFl
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1080,23 +1109,23 @@ window<span class="token punctuation">.</span><span class="token function">setFl
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/02c05e635b.html">
+                <a href="/2023/03c1aa7b93.html">
                     <div class="card-image">
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="DialogFragment+ViewBinding简单封装">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="android 关闭硬件加速">
                         
-                        <span class="card-title">DialogFragment+ViewBinding简单封装</span>
+                        <span class="card-title">android 关闭硬件加速</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            DialogFragment
+                            硬件加速可能会导致部分自定义view不兼容
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-07
                             </span>
                         <span class="publish-author">
                             
@@ -1117,8 +1146,8 @@ window<span class="token punctuation">.</span><span class="token function">setFl
                         <span class="chip bg-color">android</span>
                     </a>
                     
-                    <a href="/tags/DialogFragment/">
-                        <span class="chip bg-color">DialogFragment</span>
+                    <a href="/tags/hardwareAccelerate/">
+                        <span class="chip bg-color">hardwareAccelerate</span>
                     </a>
                     
                 </div>
