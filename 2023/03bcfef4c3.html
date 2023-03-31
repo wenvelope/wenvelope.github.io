@@ -4,8 +4,8 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="使用MNE处理脑电数据(1), 友利奈绪">
-    <meta name="description" content="基本步骤">
+    <meta name="keywords" content="年度总结-2022, 友利奈绪">
+    <meta name="description" content="要对未来抱有希望，不然怎么活下去">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>使用MNE处理脑电数据(1) | 友利奈绪</title>
+    <title>年度总结-2022 | 友利奈绪</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/wenvelope/wenvelope.github.io/logo.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/wenvelope/wenvelope.github.io/libs/awesome/css/all.min.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">使用MNE处理脑电数据(1)</h1>
+                    <h1 class="description center-align post-title">年度总结-2022</h1>
                 </div>
             </div>
         </div>
@@ -440,12 +440,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/MNE/">
-                                <span class="chip bg-color">MNE</span>
-                            </a>
-                        
-                            <a href="/tags/python/">
-                                <span class="chip bg-color">python</span>
+                            <a href="/tags/%E8%BF%B7%E8%8C%AB/">
+                                <span class="chip bg-color">迷茫</span>
                             </a>
                         
                     </div>
@@ -456,8 +452,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/BCI/" class="post-category">
-                                BCI
+                            <a href="/categories/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" class="post-category">
+                                年度总结
                             </a>
                         
                     </div>
@@ -469,7 +465,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-03-08
+                    2023-03-31
                 </div>
                 
 
@@ -493,50 +489,8 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h2><p> pycharm 专业版 mne 1.3.1   </p>
-<h2 id="导入相关库"><a href="#导入相关库" class="headerlink" title="导入相关库"></a>导入相关库</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> mne
-<span class="token keyword">from</span> pathlib impot Path
-<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
-<span class="token operator">%</span>matplotlib qt
-<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">raw_path <span class="token operator">=</span> <span class="token string">"./12whr/day3/graz2/2.cnt"</span>
-raw_path <span class="token operator">=</span> Path<span class="token punctuation">(</span>raw_path<span class="token punctuation">)</span>
-raw <span class="token operator">=</span> mne<span class="token punctuation">.</span>io<span class="token punctuation">.</span>read_raw_cnt<span class="token punctuation">(</span>raw_path<span class="token punctuation">,</span>preload<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h2 id="选取感兴趣的导联"><a href="#选取感兴趣的导联" class="headerlink" title="选取感兴趣的导联"></a>选取感兴趣的导联</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">raw<span class="token punctuation">.</span>pick_channels<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'C3'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h2 id="滤波"><a href="#滤波" class="headerlink" title="滤波"></a>滤波</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">raw<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>l_freq<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>h_freq<span class="token operator">=</span><span class="token number">50</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h2 id="分割成Epochs"><a href="#分割成Epochs" class="headerlink" title="分割成Epochs"></a>分割成Epochs</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">events<span class="token punctuation">,</span>event_id <span class="token operator">=</span> mne<span class="token punctuation">.</span>events_from_annotations<span class="token punctuation">(</span>raw<span class="token punctuation">)</span>
-event_id <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span>left<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>right<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
-epochs <span class="token operator">=</span> mne<span class="token punctuation">.</span>Epochs<span class="token punctuation">(</span>raw<span class="token punctuation">,</span>events <span class="token operator">=</span> events<span class="token punctuation">,</span>event_id <span class="token operator">=</span> event_id<span class="token punctuation">,</span>tmin <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">0.5</span><span class="token punctuation">,</span>tmax <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">,</span>preload <span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="基线校正"><a href="#基线校正" class="headerlink" title="基线校正"></a>基线校正</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">## 将整个事件前的时间窗口作为基线</span>
-baseline <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token boolean">None</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span>
-epochs<span class="token punctuation">.</span>apply_baseline<span class="token punctuation">(</span>baseline<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h2 id="重参考"><a href="#重参考" class="headerlink" title="重参考"></a>重参考</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">epochs<span class="token punctuation">.</span>set_eeg_reference<span class="token punctuation">(</span>ref_channels <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'M1'</span><span class="token punctuation">,</span><span class="token string">'M2'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token comment">#设置ref_channels为 None 将Epochs数据参考到平均参考</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h2 id="降低采样率"><a href="#降低采样率" class="headerlink" title="降低采样率"></a>降低采样率</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#一般为感兴趣的频率的两倍以上 例如我想分析50hz的波</span>
-epochs_resampled <span class="token operator">=</span> epochs<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>resample<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span>npad<span class="token operator">=</span><span class="token string">'auto'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</br>  
-
-<blockquote>
-<p>以上为处理的一般步骤  </p>
-</blockquote>
-<h2 id="插值坏导"><a href="#插值坏导" class="headerlink" title="插值坏导"></a>插值坏导</h2><h2 id="ICA-去除伪迹"><a href="#ICA-去除伪迹" class="headerlink" title="ICA 去除伪迹"></a>ICA 去除伪迹</h2><h2 id="叠加求平均"><a href="#叠加求平均" class="headerlink" title="叠加求平均"></a>叠加求平均</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">evoked <span class="token operator">=</span> epochs<span class="token punctuation">.</span>average<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h2 id="用小波变换来分析时频"><a href="#用小波变换来分析时频" class="headerlink" title="用小波变换来分析时频"></a>用小波变换来分析时频</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">freqs <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">50</span><span class="token punctuation">)</span>
-power <span class="token operator">=</span> mne<span class="token punctuation">.</span>time_frequency<span class="token punctuation">.</span>tfr_morlet<span class="token punctuation">(</span>evoked<span class="token punctuation">,</span>freqs<span class="token operator">=</span>freqs<span class="token punctuation">,</span>n_cycles <span class="token operator">=</span> freqs<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">,</span>return_itc <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">)</span>
-
-<span class="token operator">//</span> 画图
-fig<span class="token punctuation">,</span> ax <span class="token operator">=</span> plt<span class="token punctuation">.</span>subplots<span class="token punctuation">(</span><span class="token punctuation">)</span>
-im <span class="token operator">=</span> ax<span class="token punctuation">.</span>pcolormesh<span class="token punctuation">(</span>power<span class="token punctuation">.</span>times<span class="token punctuation">,</span> power<span class="token punctuation">.</span>freqs<span class="token punctuation">,</span> power<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> cmap<span class="token operator">=</span><span class="token string">'jet'</span><span class="token punctuation">,</span>vmin<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1.5</span><span class="token operator">*</span><span class="token number">1e-9</span><span class="token punctuation">,</span>vmax<span class="token operator">=</span><span class="token number">1.5</span><span class="token operator">*</span><span class="token number">1e-9</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>set_xlabel<span class="token punctuation">(</span><span class="token string">'Time (s)'</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>set_title<span class="token punctuation">(</span><span class="token string">"C4_right"</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>set_ylabel<span class="token punctuation">(</span><span class="token string">'Frequency (Hz)'</span><span class="token punctuation">)</span>
-cbar <span class="token operator">=</span> fig<span class="token punctuation">.</span>colorbar<span class="token punctuation">(</span>im<span class="token punctuation">)</span>
-cbar<span class="token punctuation">.</span>set_label<span class="token punctuation">(</span><span class="token string">'Power'</span><span class="token punctuation">)</span>
-plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+                <h2 id="小牢骚"><a href="#小牢骚" class="headerlink" title="小牢骚"></a>小牢骚</h2><p>&amp;ensp;<br>&amp;ensp;<br>不知不觉已经写了一年的博客了，起初写博客是因为参加蓝桥杯，想记录一下自己刷的题目，后来为了巩固自己的学习成果决定每周都写一个总结，但是没坚持下来，哈哈，很多东西，当要把他们展示出来的时候，总会担心哪里有纰漏，亦或者是哪里不够全面，从而不敢下笔。<br>&amp;ensp;<br>&amp;ensp;<br>后来想开了，其实自己也不过是一个初学者，只是记录自己的学习罢了，大可潇洒一点。<br>&amp;ensp;<br>&amp;ensp;<br>这一年来，也发生了不少事，关键还是在于那次面试，当时不知自己几斤几两，投了字节的暑期实习，一面的面试官很亲切，但是问的问题一半都带沉默，一面就面了一个小时，本来以为g了，结果等了三四天收到了二面的通知，结果二面的时候跟我说没有hc了，让我要不要换个岗位。考虑了一下自己当时的水平，直接放弃了。<br>&amp;ensp;<br>&amp;ensp;<br>这次面试之后，愈发觉得自己的水平太低了，开始认真学习，报了个竞赛打算督促自己学习。后来每天也刷刷算法题，一开始感觉挺有意思，后面发现全是套路。（可能是我水平还不到位）有幸竞赛混了个国奖。后来大三下了，想找找实习积累下经验，投了个上海的小公司，但是只干了接近一个月，公司人都挺好，水平也很高，只有我给人家项目提交了不少垃圾代码。干了一个月的原因是成绩排名出来了，不算加分的话，按照以往五个保研名额的话自己刚好第五，想了想回去准备预推免了，与此同时，我同学已经夏令营狂揽三个985offer了。<br>&amp;ensp;<br>&amp;ensp;<br>后来有幸保研了，闲得慌，就找了个班上，头对我特别好，学到了不少全新的知识，还有职场上的沟通技巧，考虑到我是个纯宅男，近乎零社交。后来得了新冠，烧到40度，实在受不了，把工作辞了。<br>&amp;ensp;<br>&amp;ensp;<br>这几个月天天看大厂裁员新闻，什么互联网寒冬啊，说实话，自己也焦虑，感觉不知不觉自己的人生终极目标就变成了买个房子结婚了，要是初中的我肯定会批判现在的我没有一点理想追求，说的也对，那会我还喜欢文学呢，感觉跨度有点大。</p>
+<h2 id="小希冀"><a href="#小希冀" class="headerlink" title="小希冀"></a>小希冀</h2><p>&amp;ensp;<br>&amp;ensp;<br>这一年github上的累计提交也有300多次了，但只多学会了几个框架，多用了几个库，感觉也没啥提升，希望新的一年，有更多的代码能力上的提升，少一点焦虑，多一点游戏，少一点体重，多一点身高&amp;#x1F308;&amp;#x1F308;&amp;#x1F308;&amp;#x1F308;</p>
 
                 
             </div>
@@ -563,7 +517,7 @@ plt<span class="token punctuation">.</span>show<span class="token punctuation">(
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wenvelope.github.io/2023/038b33c42c.html">https://wenvelope.github.io/2023/038b33c42c.html</a>
+                    <a href="https://wenvelope.github.io/2023/03bcfef4c3.html">https://wenvelope.github.io/2023/03bcfef4c3.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -601,12 +555,8 @@ plt<span class="token punctuation">.</span>show<span class="token punctuation">(
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/MNE/">
-                                    <span class="chip bg-color">MNE</span>
-                                </a>
-                            
-                                <a href="/tags/python/">
-                                    <span class="chip bg-color">python</span>
+                                <a href="/tags/%E8%BF%B7%E8%8C%AB/">
+                                    <span class="chip bg-color">迷茫</span>
                                 </a>
                             
                         </div>
@@ -1046,9 +996,10 @@ plt<span class="token punctuation">.</span>show<span class="token punctuation">(
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2023/03bcfef4c3.html">
                     <div class="card-image">
@@ -1065,9 +1016,9 @@ plt<span class="token punctuation">.</span>show<span class="token punctuation">(
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-31
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-31
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1080,6 +1031,7 @@ plt<span class="token punctuation">.</span>show<span class="token punctuation">(
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1098,30 +1050,30 @@ plt<span class="token punctuation">.</span>show<span class="token punctuation">(
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/03c1aa7b93.html">
+                <a href="/2023/038b33c42c.html">
                     <div class="card-image">
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="android 关闭硬件加速">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="使用MNE处理脑电数据(1)">
                         
-                        <span class="card-title">android 关闭硬件加速</span>
+                        <span class="card-title">使用MNE处理脑电数据(1)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            硬件加速可能会导致部分自定义view不兼容
+                            基本步骤
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-08
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/android/" class="post-category">
-                                    android
+                            <a href="/categories/BCI/" class="post-category">
+                                    BCI
                                 </a>
                             
                             
@@ -1131,12 +1083,12 @@ plt<span class="token punctuation">.</span>show<span class="token punctuation">(
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/android/">
-                        <span class="chip bg-color">android</span>
+                    <a href="/tags/MNE/">
+                        <span class="chip bg-color">MNE</span>
                     </a>
                     
-                    <a href="/tags/hardwareAccelerate/">
-                        <span class="chip bg-color">hardwareAccelerate</span>
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
                     </a>
                     
                 </div>
