@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>设置ssh长连接</title>
+      <link href="/2023/04cab35ca6.html"/>
+      <url>/2023/04cab35ca6.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>考虑到ssh连接后长时间未使用便会自动断开 然后终端未响应 所以想办法保持连接。</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><blockquote><ul><li>打开文件目录到 etc&#x2F;ssh</li><li>sudo vim ssh_config</li><li>添加 TCPKeepAlive yes  </li><li>添加 ServerAliveInterval 180</li><li>添加 ServerAliveCountMax 3</li><li>按 esc :wq 保存并退出</li></ul></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ssh </tag>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>年度总结-2022</title>
       <link href="/2023/03bcfef4c3.html"/>
       <url>/2023/03bcfef4c3.html</url>

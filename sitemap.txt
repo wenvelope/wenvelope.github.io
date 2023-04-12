@@ -1,3 +1,4 @@
+https://wenvelope.github.io/2023/04cab35ca6.html
 https://wenvelope.github.io/2023/03bcfef4c3.html
 https://wenvelope.github.io/2023/038b33c42c.html
 https://wenvelope.github.io/2023/03c1aa7b93.html
@@ -66,6 +67,7 @@ https://wenvelope.github.io/tags/DialogFragment/
 https://wenvelope.github.io/tags/hardwareAccelerate/
 https://wenvelope.github.io/tags/MNE/
 https://wenvelope.github.io/tags/python/
+https://wenvelope.github.io/tags/linux/
 https://wenvelope.github.io/tags/%E8%BF%B7%E8%8C%AB/
 https://wenvelope.github.io/categories/android/
 https://wenvelope.github.io/categories/%E7%AE%97%E6%B3%95/
@@ -73,4 +75,5 @@ https://wenvelope.github.io/categories/Linux/
 https://wenvelope.github.io/categories/Git/
 https://wenvelope.github.io/categories/Kotlin/
 https://wenvelope.github.io/categories/BCI/
+https://wenvelope.github.io/categories/linux/
 https://wenvelope.github.io/categories/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/
