@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="设置ssh长连接, 友利奈绪">
+    <meta name="keywords" content="委托和动态代理, 友利奈绪">
     <meta name="description" content="etc/ssh/ssh_config">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>设置ssh长连接 | 友利奈绪</title>
+    <title>委托和动态代理 | 友利奈绪</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/wenvelope/wenvelope.github.io/logo.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/wenvelope/wenvelope.github.io/libs/awesome/css/all.min.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">设置ssh长连接</h1>
+                    <h1 class="description center-align post-title">委托和动态代理</h1>
                 </div>
             </div>
         </div>
@@ -440,12 +440,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/ssh/">
-                                <span class="chip bg-color">ssh</span>
+                            <a href="/tags/%E4%BB%A3%E7%90%86/">
+                                <span class="chip bg-color">代理</span>
                             </a>
                         
-                            <a href="/tags/linux/">
-                                <span class="chip bg-color">linux</span>
+                            <a href="/tags/%E5%A7%94%E6%89%98/">
+                                <span class="chip bg-color">委托</span>
                             </a>
                         
                     </div>
@@ -456,8 +456,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/linux/" class="post-category">
-                                linux
+                            <a href="/categories/kotlin/" class="post-category">
+                                kotlin
                             </a>
                         
                     </div>
@@ -469,7 +469,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-04-12
+                    2023-04-13
                 </div>
                 
 
@@ -493,18 +493,83 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>考虑到ssh连接后长时间未使用便会自动断开 然后终端未响应 所以想办法保持连接。</p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><blockquote>
-<ul>
-<li>打开文件目录到 etc&#x2F;ssh</li>
-<li>sudo vim ssh_config</li>
-<li>添加 TCPKeepAlive yes  </li>
-<li>添加 ServerAliveInterval 180</li>
-<li>添加 ServerAliveCountMax 3</li>
-<li>按 esc :wq 保存并退出</li>
-</ul>
+                <blockquote>
+<p>对于动态代理 和 kotlin的委托一直都没怎么搞懂，所以最近又看了一遍 ，总结一下。</p>
 </blockquote>
+<h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><p>代理模式 (Proxy Pattern)，又称委托模式，顾名思义就是一个对象的实现委托给另一个代理对象来实现供外部调用。<br>在 Java 中就是为一个对象 A 的一个方法 B 提供一个代理对象，这个代理对象可以完全控制 A 对象的 B 方法实际的执行内容。四个关键词：<strong>代理对象,被代理对象,被代理行为,对行为的完全控制</strong>。<br>在kotlin中则原生支持了委托，在kotlin中有<code>类委托</code>和<code>属性委托</code>两种。<strong>其实，我觉得属性委托只是类委托的一个特例，从大的方面看，属性委托只是把被代理的行为从原来的我所定义的接口的全部方法，变成了getter(对于val)或者getter和setter(对于var)的代理。</strong><br><strong>代理</strong>又分为静态代理和动态代理，kotlin的委托其实就是一种静态代理。</p>
+<h2 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h2><p>假设我们现在有一个场景，小明（<strong>被代理对象</strong>）手机没电了，小明需要小田（<strong>代理对象</strong>）帮他扫共享单车（<strong>被代理行为</strong>），小田可以选择用什么手机扫，用什么付款方式（<strong>对行为的完全控制</strong>）。</p>
+<h3 id="java-实现"><a href="#java-实现" class="headerlink" title="java 实现"></a>java 实现</h3><p>首先我们定义一个<strong>被代理行为</strong>的接口</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">interface</span> <span class="token class-name">ScanQrCode</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">void</span> <span class="token function">scanCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>然后我们定义一个被代理对象 并且实现这个接口</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Ming</span> <span class="token keyword">implements</span> <span class="token class-name">ScanQrCode</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">scanCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"ming scan the code"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>然后我们再定义我们的代理对象，我们的代理对象要持有被代理对象的引用(转型成接口类型)</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Tian</span> <span class="token keyword">implements</span> <span class="token class-name">ScanQrCode</span> <span class="token punctuation">&#123;</span>
+   <span class="token comment">//只能够代理这个接口中定义的行为</span>
+    <span class="token keyword">private</span> <span class="token class-name">ScanQrCode</span> owner<span class="token punctuation">;</span>
 
+    <span class="token keyword">public</span> <span class="token class-name">Tian</span><span class="token punctuation">(</span><span class="token class-name">ScanQrCode</span> owner<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>owner <span class="token operator">=</span> owner<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">scanCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//我可以调用被代理对象的行为 也可以完全自己定义行为</span>
+        owner<span class="token punctuation">.</span><span class="token function">scanCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>使用</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MainTest</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">Tian</span> tian <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Tian</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Ming</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        tian<span class="token punctuation">.</span><span class="token function">scanCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="kotlin实现"><a href="#kotlin实现" class="headerlink" title="kotlin实现"></a>kotlin实现</h3><p>kotlin原生支持了委托 让我们看看如何实现上面的代码<br>在这里我们定义两个行为 来体现kotlin委托的优势</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">interface</span> ScanQrCode<span class="token punctuation">&#123;</span>
+    <span class="token keyword">fun</span> <span class="token function">scanCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">fun</span> <span class="token function">pay</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>定义被代理对象</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">class</span> Ming<span class="token operator">:</span>ScanQrCode<span class="token punctuation">&#123;</span>
+    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">scanCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"ming scan the code"</span></span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">pay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"ming pay the money"</span></span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>定义代理对象 这里我们只需要使用by关键字便可以直接拿下。</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">class</span> <span class="token function">Tian</span><span class="token punctuation">(</span><span class="token keyword">private</span> <span class="token keyword">val</span> owner<span class="token operator">:</span> ScanQrCode<span class="token punctuation">)</span> <span class="token operator">:</span> ScanQrCode <span class="token keyword">by</span> <span class="token function">Ming</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>使用</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> tian <span class="token operator">=</span> <span class="token function">Tian</span><span class="token punctuation">(</span><span class="token function">Ming</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    tian<span class="token punctuation">.</span><span class="token function">scanCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    tian<span class="token punctuation">.</span><span class="token function">pay</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>输出</p>
+<pre class="line-numbers language-none"><code class="language-none">ming scan the code
+ming pay the money<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>如果我们想要修改部分行为 比如修改scanCode行为 只需要重写相应的方法即可。</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">class</span> <span class="token function">Tian</span><span class="token punctuation">(</span><span class="token keyword">private</span> <span class="token keyword">val</span> owner<span class="token operator">:</span> ScanQrCode<span class="token punctuation">)</span> <span class="token operator">:</span> ScanQrCode <span class="token keyword">by</span> <span class="token function">Ming</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">scanCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        owner<span class="token punctuation">.</span><span class="token function">scanCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"tian scan the code"</span></span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>修改后输出 相当的方便</p>
+<pre class="line-numbers language-none"><code class="language-none">ming scan the code
+tian scan the code
+ming pay the money<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -530,7 +595,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wenvelope.github.io/2023/04cab35ca6.html">https://wenvelope.github.io/2023/04cab35ca6.html</a>
+                    <a href="https://wenvelope.github.io/2023/049e0b8d1b.html">https://wenvelope.github.io/2023/049e0b8d1b.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -568,12 +633,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/ssh/">
-                                    <span class="chip bg-color">ssh</span>
+                                <a href="/tags/%E4%BB%A3%E7%90%86/">
+                                    <span class="chip bg-color">代理</span>
                                 </a>
                             
-                                <a href="/tags/linux/">
-                                    <span class="chip bg-color">linux</span>
+                                <a href="/tags/%E5%A7%94%E6%89%98/">
+                                    <span class="chip bg-color">委托</span>
                                 </a>
                             
                         </div>
@@ -1013,9 +1078,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2023/049e0b8d1b.html">
                     <div class="card-image">
@@ -1032,9 +1098,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-04-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1047,6 +1113,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1069,30 +1136,30 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/03bcfef4c3.html">
+                <a href="/2023/04cab35ca6.html">
                     <div class="card-image">
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="年度总结-2022">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="设置ssh长连接">
                         
-                        <span class="card-title">年度总结-2022</span>
+                        <span class="card-title">设置ssh长连接</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            要对未来抱有希望，不然怎么活下去
+                            etc/ssh/ssh_config
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-12
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" class="post-category">
-                                    年度总结
+                            <a href="/categories/linux/" class="post-category">
+                                    linux
                                 </a>
                             
                             
@@ -1102,8 +1169,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%BF%B7%E8%8C%AB/">
-                        <span class="chip bg-color">迷茫</span>
+                    <a href="/tags/ssh/">
+                        <span class="chip bg-color">ssh</span>
+                    </a>
+                    
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
                     </a>
                     
                 </div>
