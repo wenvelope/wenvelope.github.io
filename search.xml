@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>关于使用委托在compose中遇到的问题</title>
+      <link href="/2023/0567a3026c.html"/>
+      <url>/2023/0567a3026c.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="下面是两段代码"><a href="#下面是两段代码" class="headerlink" title="下面是两段代码"></a>下面是两段代码</h2><pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">private</span> <span class="token keyword">var</span> _signViewState <span class="token keyword">by</span> <span class="token function">mutableStateOf</span><span class="token punctuation">(</span><span class="token function">SignViewState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token keyword">val</span> signViewState    <span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> _signViewState<span class="token keyword">private</span> <span class="token keyword">var</span> _signViewState <span class="token keyword">by</span> <span class="token function">mutableStateOf</span><span class="token punctuation">(</span><span class="token function">SignViewState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token keyword">val</span> signViewState <span class="token operator">=</span> _signViewState<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="下面是AI的回答"><a href="#下面是AI的回答" class="headerlink" title="下面是AI的回答"></a>下面是AI的回答</h2><p>第一行代码使用了Kotlin的委托属性，将一个可变状态变量_signViewState与mutableStateOf函数返回的包装对象关联在一起。这意味着每当我们对_signViewState进行更改时，我们将获得一个新的SignViewState对象并更新signViewState属性。这个signViewState属性是一个只读属性，它返回_signViewState的值的包装对象，即MutableState对象，而不是SignViewState对象本身。</p><p>第二行代码则直接将_signViewState的值分配给signViewState，并且这个signViewState属性是一个只读属性，直接返回_signViewState的值。这意味着如果_signViewState更改了，signViewState将仍然引用同一个SignViewState对象。</p><p>总之，第一行代码的signViewState属性返回的是一个包装对象，可以用于更改SignViewState的状态，而第二行代码的signViewState属性返回的是_signViewState的值，无法用于更改SignViewState的状态。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>如果在compose中以下面这个signViewState作为状态的话是无法监听到后续的状态改变的，因为他在初始化的时候拿到的是state的value而不是state本身。在使用了委托之后&#x3D;默认调用的就是委托之后的getValue 而上面代码则是把state本身传给了signViewState所以没有问题。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> kotlin </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 委托 </tag>
+            
+            <tag> compose </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>委托和动态代理</title>
       <link href="/2023/049e0b8d1b.html"/>
       <url>/2023/049e0b8d1b.html</url>
