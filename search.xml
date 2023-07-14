@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>C++学习记录</title>
+      <link href="/2023/072bbac153.html"/>
+      <url>/2023/072bbac153.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="c-回调写法的一个例子"><a href="#c-回调写法的一个例子" class="headerlink" title="c++ 回调写法的一个例子"></a>c++ 回调写法的一个例子</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;#include &lt;thread&gt;using namespace std;class Car &#123;public:    explicit Car(float speed)&#123;        this-&gt;speed &#x3D; speed;    &#125;    ~Car()&#123;        mThread.join();    &#125;    void setSpeedCallback(void (*callback)(float)) &#123;        this-&gt;Callback &#x3D; callback;    &#125;    void startCar() &#123;        isStop &#x3D; false;        mThread &#x3D; std::thread(&amp;Car::program, this);    &#125;    void stopCar() &#123;        isStop &#x3D; true;    &#125;private:    float speed &#x3D; 0.0;    void (*Callback)(float)&#123;&#125;;    bool isStop &#x3D; true;    void program() &#123;        while (!isStop) &#123;            chrono::seconds dur(1);            this_thread::sleep_for(dur);            speed++;            Callback(speed);            if (speed&gt;&#x3D;100)&#123;                return;            &#125;        &#125;    &#125;    thread mThread;&#125;;int main() &#123;    Car car(20.0);    car.setSpeedCallback([](float x) &#123;        cout &lt;&lt; x &lt;&lt; endl;    &#125;);    car.startCar();&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> c++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> callback </tag>
+            
+            <tag> thread </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MVI架构下的封装</title>
       <link href="/2023/057a2b2500.html"/>
       <url>/2023/057a2b2500.html</url>
