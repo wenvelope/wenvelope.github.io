@@ -493,67 +493,67 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="c-回调写法的一个例子"><a href="#c-回调写法的一个例子" class="headerlink" title="c++ 回调写法的一个例子"></a>c++ 回调写法的一个例子</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
-#include &lt;thread&gt;
+                <h2 id="c-回调写法的一个例子"><a href="#c-回调写法的一个例子" class="headerlink" title="c++ 回调写法的一个例子"></a>c++ 回调写法的一个例子</h2><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;thread></span></span>
 
-using namespace std;
+using namespace std<span class="token punctuation">;</span>
 
-class Car &#123;
-public:
-    explicit Car(float speed)&#123;
-        this-&gt;speed &#x3D; speed;
-    &#125;
+class Car <span class="token punctuation">&#123;</span>
+public<span class="token operator">:</span>
+    explicit <span class="token function">Car</span><span class="token punctuation">(</span><span class="token keyword">float</span> speed<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        this<span class="token operator">-></span>speed <span class="token operator">=</span> speed<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    ~Car()&#123;
-        mThread.join();
-    &#125;
+    <span class="token operator">~</span><span class="token function">Car</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        mThread<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    void setSpeedCallback(void (*callback)(float)) &#123;
-        this-&gt;Callback &#x3D; callback;
-    &#125;
-
-
-    void startCar() &#123;
-        isStop &#x3D; false;
-        mThread &#x3D; std::thread(&amp;Car::program, this);
-    &#125;
-
-    void stopCar() &#123;
-        isStop &#x3D; true;
-    &#125;
+    <span class="token keyword">void</span> <span class="token function">setSpeedCallback</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token punctuation">(</span><span class="token operator">*</span>callback<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        this<span class="token operator">-></span>Callback <span class="token operator">=</span> callback<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
 
-private:
-    float speed &#x3D; 0.0;
+    <span class="token keyword">void</span> <span class="token function">startCar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        isStop <span class="token operator">=</span> false<span class="token punctuation">;</span>
+        mThread <span class="token operator">=</span> std<span class="token operator">::</span><span class="token function">thread</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>Car<span class="token operator">::</span>program<span class="token punctuation">,</span> this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    void (*Callback)(float)&#123;&#125;;
-
-    bool isStop &#x3D; true;
-
-    void program() &#123;
-        while (!isStop) &#123;
-            chrono::seconds dur(1);
-            this_thread::sleep_for(dur);
-            speed++;
-            Callback(speed);
-            if (speed&gt;&#x3D;100)&#123;
-                return;
-            &#125;
-        &#125;
-    &#125;
-    thread mThread;
-&#125;;
+    <span class="token keyword">void</span> <span class="token function">stopCar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        isStop <span class="token operator">=</span> true<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
 
+private<span class="token operator">:</span>
+    <span class="token keyword">float</span> speed <span class="token operator">=</span> <span class="token number">0.0</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">void</span> <span class="token punctuation">(</span><span class="token operator">*</span>Callback<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+    bool isStop <span class="token operator">=</span> true<span class="token punctuation">;</span>
+
+    <span class="token keyword">void</span> <span class="token function">program</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>isStop<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            chrono<span class="token operator">::</span>seconds <span class="token function">dur</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            this_thread<span class="token operator">::</span><span class="token function">sleep_for</span><span class="token punctuation">(</span>dur<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            speed<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token function">Callback</span><span class="token punctuation">(</span>speed<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>speed<span class="token operator">>=</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                <span class="token keyword">return</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    thread mThread<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
 
 
-int main() &#123;
-    Car car(20.0);
-    car.setSpeedCallback([](float x) &#123;
-        cout &lt;&lt; x &lt;&lt; endl;
-    &#125;);
-    car.startCar();
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    Car <span class="token function">car</span><span class="token punctuation">(</span><span class="token number">20.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    car<span class="token punctuation">.</span><span class="token function">setSpeedCallback</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">float</span> x<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        cout <span class="token operator">&lt;&lt;</span> x <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    car<span class="token punctuation">.</span><span class="token function">startCar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
