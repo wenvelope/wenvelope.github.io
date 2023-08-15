@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Android获取WIFI信息的方法</title>
+      <link href="/2023/08e10f29f8.html"/>
+      <url>/2023/08e10f29f8.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="获取WIFI信息的方法"><a href="#获取WIFI信息的方法" class="headerlink" title="获取WIFI信息的方法"></a>获取WIFI信息的方法</h2><blockquote><p>查询网上的一些方法好像已经被弃用了 找到了以下方法回头再仔细研究下</p></blockquote><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>uses-permission</span> <span class="token attr-name"><span class="token namespace">android:</span>name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>android.permission.ACCESS_NETWORK_STATE<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>uses-permission</span> <span class="token attr-name"><span class="token namespace">android:</span>name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>android.permission.INTERNET<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token comment">/** * 获取当前连接的WIFI的IP地址 */</span><span class="token keyword">fun</span> <span class="token function">getLocalIPAddress</span><span class="token punctuation">(</span>context<span class="token operator">:</span> Context<span class="token punctuation">)</span><span class="token operator">:</span> String<span class="token operator">?</span> <span class="token punctuation">&#123;</span>    <span class="token keyword">val</span> connectivityManager <span class="token operator">=</span>        context<span class="token punctuation">.</span><span class="token function">getSystemService</span><span class="token punctuation">(</span>Context<span class="token punctuation">.</span>CONNECTIVITY_SERVICE<span class="token punctuation">)</span> <span class="token keyword">as</span> ConnectivityManager    <span class="token keyword">val</span> network <span class="token operator">=</span> connectivityManager<span class="token punctuation">.</span>activeNetwork    network<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">let</span> <span class="token punctuation">&#123;</span> it1 <span class="token operator">-></span>        <span class="token keyword">val</span> networkCapabilities <span class="token operator">=</span> connectivityManager<span class="token punctuation">.</span><span class="token function">getNetworkCapabilities</span><span class="token punctuation">(</span>it1<span class="token punctuation">)</span>        networkCapabilities<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">takeIf</span> <span class="token punctuation">&#123;</span> it<span class="token punctuation">.</span><span class="token function">hasTransport</span><span class="token punctuation">(</span>NetworkCapabilities<span class="token punctuation">.</span>TRANSPORT_WIFI<span class="token punctuation">)</span> <span class="token punctuation">&#125;</span><span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">let</span> <span class="token punctuation">&#123;</span>            <span class="token keyword">val</span> linkProperties <span class="token operator">=</span> connectivityManager<span class="token punctuation">.</span><span class="token function">getLinkProperties</span><span class="token punctuation">(</span>it1<span class="token punctuation">)</span>            <span class="token keyword">return</span> linkProperties<span class="token operator">?</span><span class="token punctuation">.</span>linkAddresses<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">find</span> <span class="token punctuation">&#123;</span> it<span class="token punctuation">.</span>address <span class="token keyword">is</span> Inet4Address <span class="token punctuation">&#125;</span><span class="token operator">?</span><span class="token punctuation">.</span>address<span class="token operator">?</span><span class="token punctuation">.</span>hostAddress        <span class="token punctuation">&#125;</span> <span class="token operator">?:</span> run <span class="token punctuation">&#123;</span>            <span class="token keyword">return</span> <span class="token keyword">null</span>        <span class="token punctuation">&#125;</span>    <span class="token punctuation">&#125;</span> <span class="token operator">?:</span> run <span class="token punctuation">&#123;</span>        <span class="token keyword">return</span> <span class="token keyword">null</span>    <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 8I15 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ConnectivityManager </tag>
+            
+            <tag> IpAddress </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>单例模式的几种写法</title>
       <link href="/2023/07c12913ce.html"/>
       <url>/2023/07c12913ce.html</url>
