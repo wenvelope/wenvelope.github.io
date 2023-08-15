@@ -493,14 +493,14 @@
   </url>
   
   <url>
-    <loc>https://wenvelope.github.io/tags/SQLite/</loc>
+    <loc>https://wenvelope.github.io/tags/SVGA/</loc>
     <lastmod>2023-08-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://wenvelope.github.io/tags/SVGA/</loc>
+    <loc>https://wenvelope.github.io/tags/SQLite/</loc>
     <lastmod>2023-08-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -528,6 +528,13 @@
   </url>
   
   <url>
+    <loc>https://wenvelope.github.io/tags/view/</loc>
+    <lastmod>2023-08-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://wenvelope.github.io/tags/Room/</loc>
     <lastmod>2023-08-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -542,7 +549,7 @@
   </url>
   
   <url>
-    <loc>https://wenvelope.github.io/tags/view/</loc>
+    <loc>https://wenvelope.github.io/tags/%E6%8E%92%E5%BA%8F/</loc>
     <lastmod>2023-08-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -556,21 +563,7 @@
   </url>
   
   <url>
-    <loc>https://wenvelope.github.io/tags/%E6%8E%92%E5%BA%8F/</loc>
-    <lastmod>2023-08-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://wenvelope.github.io/tags/activity/</loc>
-    <lastmod>2023-08-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenvelope.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
     <lastmod>2023-08-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -584,7 +577,7 @@
   </url>
   
   <url>
-    <loc>https://wenvelope.github.io/tags/DialogFragment/</loc>
+    <loc>https://wenvelope.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
     <lastmod>2023-08-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -592,6 +585,13 @@
   
   <url>
     <loc>https://wenvelope.github.io/tags/hardwareAccelerate/</loc>
+    <lastmod>2023-08-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenvelope.github.io/tags/DialogFragment/</loc>
     <lastmod>2023-08-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -606,13 +606,6 @@
   
   <url>
     <loc>https://wenvelope.github.io/tags/python/</loc>
-    <lastmod>2023-08-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenvelope.github.io/tags/linux/</loc>
     <lastmod>2023-08-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -640,20 +633,6 @@
   </url>
   
   <url>
-    <loc>https://wenvelope.github.io/tags/viewModel/</loc>
-    <lastmod>2023-08-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenvelope.github.io/tags/MVI/</loc>
-    <lastmod>2023-08-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://wenvelope.github.io/tags/callback/</loc>
     <lastmod>2023-08-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -662,6 +641,27 @@
   
   <url>
     <loc>https://wenvelope.github.io/tags/thread/</loc>
+    <lastmod>2023-08-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenvelope.github.io/tags/linux/</loc>
+    <lastmod>2023-08-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenvelope.github.io/tags/viewModel/</loc>
+    <lastmod>2023-08-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenvelope.github.io/tags/MVI/</loc>
     <lastmod>2023-08-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -726,13 +726,6 @@
   </url>
   
   <url>
-    <loc>https://wenvelope.github.io/categories/linux/</loc>
-    <lastmod>2023-08-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://wenvelope.github.io/categories/kotlin/</loc>
     <lastmod>2023-08-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -741,6 +734,13 @@
   
   <url>
     <loc>https://wenvelope.github.io/categories/c/</loc>
+    <lastmod>2023-08-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenvelope.github.io/categories/linux/</loc>
     <lastmod>2023-08-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
