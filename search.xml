@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>jupyter画图出现表格的问题</title>
+      <link href="/2023/08fb50097e.html"/>
+      <url>/2023/08fb50097e.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>有时候使用mne自带的画图在jupyter中会出现网格 但是并没有设置</p><h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#在画图前</span>plt<span class="token punctuation">.</span>rcParams<span class="token punctuation">[</span><span class="token string">'axes.grid'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">False</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> BCI </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> jupyter </tag>
+            
+            <tag> mne </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Android获取WIFI信息的方法</title>
       <link href="/2023/08e10f29f8.html"/>
       <url>/2023/08e10f29f8.html</url>
@@ -13,7 +42,7 @@
       
       <categories>
           
-          <category> 8I15 </category>
+          <category> android </category>
           
       </categories>
       
@@ -130,9 +159,9 @@
       
         <tags>
             
-            <tag> 委托 </tag>
-            
             <tag> compose </tag>
+            
+            <tag> 委托 </tag>
             
         </tags>
       
@@ -157,9 +186,9 @@
       
         <tags>
             
-            <tag> 代理 </tag>
-            
             <tag> 委托 </tag>
+            
+            <tag> 代理 </tag>
             
         </tags>
       

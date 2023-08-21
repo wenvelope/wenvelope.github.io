@@ -4,8 +4,8 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="MVI架构下的封装, 友利奈绪">
-    <meta name="description" content="减少模板代码">
+    <meta name="keywords" content="jupyter画图出现表格的问题, 友利奈绪">
+    <meta name="description" content="问题总结">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>MVI架构下的封装 | 友利奈绪</title>
+    <title>jupyter画图出现表格的问题 | 友利奈绪</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/wenvelope/wenvelope.github.io/logo.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/wenvelope/wenvelope.github.io/libs/awesome/css/all.min.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">MVI架构下的封装</h1>
+                    <h1 class="description center-align post-title">jupyter画图出现表格的问题</h1>
                 </div>
             </div>
         </div>
@@ -440,16 +440,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Flow/">
-                                <span class="chip bg-color">Flow</span>
+                            <a href="/tags/python/">
+                                <span class="chip bg-color">python</span>
                             </a>
                         
-                            <a href="/tags/viewModel/">
-                                <span class="chip bg-color">viewModel</span>
+                            <a href="/tags/jupyter/">
+                                <span class="chip bg-color">jupyter</span>
                             </a>
                         
-                            <a href="/tags/MVI/">
-                                <span class="chip bg-color">MVI</span>
+                            <a href="/tags/mne/">
+                                <span class="chip bg-color">mne</span>
                             </a>
                         
                     </div>
@@ -460,8 +460,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/android/" class="post-category">
-                                android
+                            <a href="/categories/BCI/" class="post-category">
+                                BCI
                             </a>
                         
                     </div>
@@ -473,7 +473,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-05-19
+                    2023-08-21
                 </div>
                 
 
@@ -497,140 +497,9 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="MVI架构是什么"><a href="#MVI架构是什么" class="headerlink" title="MVI架构是什么"></a>MVI架构是什么</h2><div  align="center">    
-<img src="../images/android_architecture.png" width="50%" height="50%">
-</div>  
-<center>架构图</center>  
-Model统一管理UI状态，并暴露出ViewState供View订阅，UI的状态只来自与model层。
-View层通过传递事件给model层由model层统一处理。这里关键的两个点就在于State和Event。
-
-</br>  
-
-<h2 id="MVI架构的封装"><a href="#MVI架构的封装" class="headerlink" title="MVI架构的封装"></a>MVI架构的封装</h2><p>首先定义两个接口</p>
-<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token annotation builtin">@Keep</span>
-<span class="token keyword">interface</span> UiState
-
-<span class="token annotation builtin">@Keep</span>
-<span class="token keyword">interface</span> UiEvent
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="定义容器"><a href="#定义容器" class="headerlink" title="定义容器"></a>定义容器</h3><pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">interface</span> Container<span class="token operator">&lt;</span>STATE <span class="token operator">:</span> UiState<span class="token punctuation">,</span> EVENT <span class="token operator">:</span> UiEvent<span class="token operator">></span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">val</span> uiStateFlow<span class="token operator">:</span> StateFlow<span class="token operator">&lt;</span>STATE<span class="token operator">></span>
-    <span class="token keyword">val</span> uiEventFlow<span class="token operator">:</span> SharedFlow<span class="token operator">&lt;</span>EVENT<span class="token operator">></span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token keyword">interface</span> MutableContainer<span class="token operator">&lt;</span>STATE <span class="token operator">:</span> UiState<span class="token punctuation">,</span> EVENT <span class="token operator">:</span> UiEvent<span class="token operator">></span> <span class="token operator">:</span> Container<span class="token operator">&lt;</span>STATE<span class="token punctuation">,</span> EVENT<span class="token operator">></span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">fun</span> <span class="token function">updateState</span><span class="token punctuation">(</span>action<span class="token operator">:</span> STATE<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> STATE<span class="token punctuation">)</span>
-
-    <span class="token keyword">fun</span> <span class="token function">emitEvent</span><span class="token punctuation">(</span>event<span class="token operator">:</span> EVENT<span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="定义容器的实现类"><a href="#定义容器的实现类" class="headerlink" title="定义容器的实现类"></a>定义容器的实现类</h3><p>使用StateFlow来管理状态 SharedFlow管理事件 并且实现发送事件的方法和更新UI状态的方法 这里我们调用了传入的是一个STATE的扩展函数 所以在使用updateState的时候会直接拥有STATE的实例方便我们进行copy修改。</p>
-<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">internal</span> <span class="token keyword">class</span> RealContainer<span class="token operator">&lt;</span>STATE <span class="token operator">:</span> UiState<span class="token punctuation">,</span> SINGLE_EVENT <span class="token operator">:</span> UiEvent<span class="token operator">></span><span class="token punctuation">(</span>
-    initialState<span class="token operator">:</span> STATE<span class="token punctuation">,</span>
-    <span class="token keyword">private</span> <span class="token keyword">val</span> parentScope<span class="token operator">:</span> CoroutineScope<span class="token punctuation">,</span>
-<span class="token punctuation">)</span> <span class="token operator">:</span> MutableContainer<span class="token operator">&lt;</span>STATE<span class="token punctuation">,</span> SINGLE_EVENT<span class="token operator">></span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">private</span> <span class="token keyword">val</span> _internalStateFlow <span class="token operator">=</span> <span class="token function">MutableStateFlow</span><span class="token punctuation">(</span>initialState<span class="token punctuation">)</span>
-    <span class="token keyword">private</span> <span class="token keyword">val</span> _internalSingleEventSharedFlow <span class="token operator">=</span> MutableSharedFlow<span class="token operator">&lt;</span>SINGLE_EVENT<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">override</span> <span class="token keyword">val</span> uiStateFlow<span class="token operator">:</span> StateFlow<span class="token operator">&lt;</span>STATE<span class="token operator">></span> <span class="token operator">=</span> _internalStateFlow
-    <span class="token keyword">override</span> <span class="token keyword">val</span> uiEventFlow<span class="token operator">:</span> SharedFlow<span class="token operator">&lt;</span>SINGLE_EVENT<span class="token operator">></span> <span class="token operator">=</span> _internalSingleEventSharedFlow
-    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">emitEvent</span><span class="token punctuation">(</span>event<span class="token operator">:</span> SINGLE_EVENT<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        parentScope<span class="token punctuation">.</span><span class="token function">launch</span> <span class="token punctuation">&#123;</span>
-            _internalSingleEventSharedFlow<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-
-    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">updateState</span><span class="token punctuation">(</span>action<span class="token operator">:</span> STATE<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> STATE<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        _internalStateFlow<span class="token punctuation">.</span><span class="token function">update</span> <span class="token punctuation">&#123;</span> it<span class="token punctuation">.</span><span class="token function">action</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="使用委托和懒加载来构造容器"><a href="#使用委托和懒加载来构造容器" class="headerlink" title="使用委托和懒加载来构造容器"></a>使用委托和懒加载来构造容器</h3><pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token operator">&lt;</span>STATE <span class="token operator">:</span> UiState<span class="token punctuation">,</span> SINGLE_EVENT <span class="token operator">:</span> UiEvent<span class="token operator">></span> ViewModel<span class="token punctuation">.</span><span class="token function">containers</span><span class="token punctuation">(</span>
-    initialState<span class="token operator">:</span> STATE<span class="token punctuation">,</span>
-<span class="token punctuation">)</span><span class="token operator">:</span> Lazy<span class="token operator">&lt;</span>MutableContainer<span class="token operator">&lt;</span>STATE<span class="token punctuation">,</span> SINGLE_EVENT<span class="token operator">></span><span class="token operator">></span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token function">ContainerLazy</span><span class="token punctuation">(</span>initialState<span class="token punctuation">,</span> viewModelScope<span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token keyword">class</span> ContainerLazy<span class="token operator">&lt;</span>STATE <span class="token operator">:</span> UiState<span class="token punctuation">,</span> SINGLE_EVENT <span class="token operator">:</span> UiEvent<span class="token operator">></span><span class="token punctuation">(</span>
-    initialState<span class="token operator">:</span> STATE<span class="token punctuation">,</span>
-    parentScope<span class="token operator">:</span> CoroutineScope
-<span class="token punctuation">)</span> <span class="token operator">:</span> Lazy<span class="token operator">&lt;</span>MutableContainer<span class="token operator">&lt;</span>STATE<span class="token punctuation">,</span> SINGLE_EVENT<span class="token operator">></span><span class="token operator">></span> <span class="token punctuation">&#123;</span>
-
-    <span class="token keyword">private</span> <span class="token keyword">var</span> cache<span class="token operator">:</span> MutableContainer<span class="token operator">&lt;</span>STATE<span class="token punctuation">,</span> SINGLE_EVENT<span class="token operator">></span><span class="token operator">?</span> <span class="token operator">=</span> <span class="token keyword">null</span>
-
-    <span class="token keyword">override</span> <span class="token keyword">val</span> value<span class="token operator">:</span> MutableContainer<span class="token operator">&lt;</span>STATE<span class="token punctuation">,</span> SINGLE_EVENT<span class="token operator">></span> <span class="token operator">=</span> cache
-        <span class="token operator">?:</span> RealContainer<span class="token operator">&lt;</span>STATE<span class="token punctuation">,</span> SINGLE_EVENT<span class="token operator">></span><span class="token punctuation">(</span>initialState<span class="token punctuation">,</span> parentScope<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">also</span> <span class="token punctuation">&#123;</span>
-            cache <span class="token operator">=</span> it
-        <span class="token punctuation">&#125;</span>
-
-    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">isInitialized</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> cache <span class="token operator">!=</span> <span class="token keyword">null</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="定义viewModel基类减少样板代码"><a href="#定义viewModel基类减少样板代码" class="headerlink" title="定义viewModel基类减少样板代码"></a>定义viewModel基类减少样板代码</h3><p>考虑到我的view层使用的是compose 我在构造方法中来reduce事件，把状态的初始化方法暴露出来由子类实现 把可变容器隐藏起来，只对外暴露sendEvent方法。</p>
-<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">abstract</span> <span class="token keyword">class</span> BaseViewModelCore<span class="token operator">&lt;</span>T <span class="token operator">:</span> UiState<span class="token punctuation">,</span> S <span class="token operator">:</span> UiEvent<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">ViewModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">private</span> <span class="token keyword">val</span> initialState<span class="token operator">:</span> T <span class="token keyword">by</span> lazy <span class="token punctuation">&#123;</span> <span class="token function">initialState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span>
-    <span class="token keyword">protected</span> <span class="token keyword">abstract</span> <span class="token keyword">fun</span> <span class="token function">initialState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> T
-    <span class="token keyword">private</span> <span class="token keyword">val</span> _mContainer <span class="token keyword">by</span> containers<span class="token operator">&lt;</span>T<span class="token punctuation">,</span> S<span class="token operator">></span><span class="token punctuation">(</span>initialState <span class="token operator">=</span> initialState<span class="token punctuation">)</span>
-    <span class="token keyword">val</span> container<span class="token operator">:</span> Container<span class="token operator">&lt;</span>T<span class="token punctuation">,</span> S<span class="token operator">></span>
-        <span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> _mContainer
-
-    <span class="token keyword">init</span> <span class="token punctuation">&#123;</span>
-        viewModelScope<span class="token punctuation">.</span><span class="token function">launch</span> <span class="token punctuation">&#123;</span>
-            <span class="token function">reduce</span><span class="token punctuation">(</span>_mContainer<span class="token punctuation">)</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-
-    <span class="token keyword">protected</span> <span class="token keyword">abstract</span> <span class="token keyword">suspend</span> <span class="token keyword">fun</span> <span class="token function">reduce</span><span class="token punctuation">(</span>container<span class="token operator">:</span> MutableContainer<span class="token operator">&lt;</span>T<span class="token punctuation">,</span> S<span class="token operator">></span><span class="token punctuation">)</span>
-
-    <span class="token keyword">fun</span> <span class="token function">sendEvent</span><span class="token punctuation">(</span>action<span class="token operator">:</span> S<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        _mContainer<span class="token punctuation">.</span><span class="token function">emitEvent</span><span class="token punctuation">(</span>action<span class="token punctuation">)</span>
-    <span class="token punctuation">&#125;</span>
-
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">class</span> HomeViewModel <span class="token operator">:</span> BaseViewModelCore<span class="token operator">&lt;</span>HomeViewModel<span class="token punctuation">.</span>HomeUiState<span class="token punctuation">,</span> HomeViewModel<span class="token punctuation">.</span>HomeAction<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-
-
-    <span class="token keyword">data</span> <span class="token keyword">class</span> <span class="token function">HomeUiState</span><span class="token punctuation">(</span>
-        <span class="token keyword">val</span> isBottomNavShow<span class="token operator">:</span> Boolean <span class="token operator">=</span> <span class="token boolean">true</span>
-    <span class="token punctuation">)</span> <span class="token operator">:</span> UiState
-
-    <span class="token keyword">sealed</span> <span class="token keyword">interface</span> HomeAction <span class="token operator">:</span> UiEvent <span class="token punctuation">&#123;</span>
-        <span class="token keyword">object</span> ShowBottomNav <span class="token operator">:</span> HomeAction
-        <span class="token keyword">object</span> HideBottomNav <span class="token operator">:</span> HomeAction
-    <span class="token punctuation">&#125;</span>
-
-    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">initialState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> HomeUiState <span class="token operator">=</span> <span class="token function">HomeUiState</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-    <span class="token keyword">override</span> <span class="token keyword">suspend</span> <span class="token keyword">fun</span> <span class="token function">reduce</span><span class="token punctuation">(</span>container<span class="token operator">:</span> MutableContainer<span class="token operator">&lt;</span>HomeUiState<span class="token punctuation">,</span> HomeAction<span class="token operator">></span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        container<span class="token punctuation">.</span><span class="token function">apply</span> <span class="token punctuation">&#123;</span>
-            uiEventFlow<span class="token punctuation">.</span><span class="token function">collect</span> <span class="token punctuation">&#123;</span>
-                <span class="token keyword">when</span> <span class="token punctuation">(</span>it<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                    HomeAction<span class="token punctuation">.</span>ShowBottomNav <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
-                        updateState <span class="token punctuation">&#123;</span>
-                            <span class="token function">copy</span><span class="token punctuation">(</span>isBottomNavShow <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
-                        <span class="token punctuation">&#125;</span>
-                    <span class="token punctuation">&#125;</span>
-
-                    HomeAction<span class="token punctuation">.</span>HideBottomNav <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
-                        updateState <span class="token punctuation">&#123;</span>
-                            <span class="token function">copy</span><span class="token punctuation">(</span>isBottomNavShow <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
-                        <span class="token punctuation">&#125;</span>
-                    <span class="token punctuation">&#125;</span>
-                <span class="token punctuation">&#125;</span>
-            <span class="token punctuation">&#125;</span>
-        <span class="token punctuation">&#125;</span>
-
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>有时候使用mne自带的画图在jupyter中会出现网格 但是并没有设置</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#在画图前</span>
+plt<span class="token punctuation">.</span>rcParams<span class="token punctuation">[</span><span class="token string">'axes.grid'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">False</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -656,7 +525,7 @@ View层通过传递事件给model层由model层统一处理。这里关键的两
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wenvelope.github.io/2023/057a2b2500.html">https://wenvelope.github.io/2023/057a2b2500.html</a>
+                    <a href="https://wenvelope.github.io/2023/08fb50097e.html">https://wenvelope.github.io/2023/08fb50097e.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -694,16 +563,16 @@ View层通过传递事件给model层由model层统一处理。这里关键的两
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Flow/">
-                                    <span class="chip bg-color">Flow</span>
+                                <a href="/tags/python/">
+                                    <span class="chip bg-color">python</span>
                                 </a>
                             
-                                <a href="/tags/viewModel/">
-                                    <span class="chip bg-color">viewModel</span>
+                                <a href="/tags/jupyter/">
+                                    <span class="chip bg-color">jupyter</span>
                                 </a>
                             
-                                <a href="/tags/MVI/">
-                                    <span class="chip bg-color">MVI</span>
+                                <a href="/tags/mne/">
+                                    <span class="chip bg-color">mne</span>
                                 </a>
                             
                         </div>
@@ -1143,49 +1012,55 @@ View层通过传递事件给model层由model层统一处理。这里关键的两
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2023/072bbac153.html">
+                <a href="/2023/08fb50097e.html">
                     <div class="card-image">
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="C++学习记录">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="jupyter画图出现表格的问题">
                         
-                        <span class="card-title">C++学习记录</span>
+                        <span class="card-title">jupyter画图出现表格的问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            c++回调写法之一
+                            问题总结
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-07-14
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-08-21
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/c/" class="post-category">
-                                    c++
+                            <a href="/categories/BCI/" class="post-category">
+                                    BCI
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/callback/">
-                        <span class="chip bg-color">callback</span>
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
                     </a>
                     
-                    <a href="/tags/thread/">
-                        <span class="chip bg-color">thread</span>
+                    <a href="/tags/jupyter/">
+                        <span class="chip bg-color">jupyter</span>
+                    </a>
+                    
+                    <a href="/tags/mne/">
+                        <span class="chip bg-color">mne</span>
                     </a>
                     
                 </div>
@@ -1199,30 +1074,30 @@ View层通过传递事件给model层由model层统一处理。这里关键的两
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/0567a3026c.html">
+                <a href="/2023/08e10f29f8.html">
                     <div class="card-image">
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="关于使用委托在compose中遇到的问题">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Android获取WIFI信息的方法">
                         
-                        <span class="card-title">关于使用委托在compose中遇到的问题</span>
+                        <span class="card-title">Android获取WIFI信息的方法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            感觉是自己犯病
+                            工具方法总结
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-08-15
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/kotlin/" class="post-category">
-                                    kotlin
+                            <a href="/categories/android/" class="post-category">
+                                    android
                                 </a>
                             
                             
@@ -1232,12 +1107,12 @@ View层通过传递事件给model层由model层统一处理。这里关键的两
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/compose/">
-                        <span class="chip bg-color">compose</span>
+                    <a href="/tags/ConnectivityManager/">
+                        <span class="chip bg-color">ConnectivityManager</span>
                     </a>
                     
-                    <a href="/tags/%E5%A7%94%E6%89%98/">
-                        <span class="chip bg-color">委托</span>
+                    <a href="/tags/IpAddress/">
+                        <span class="chip bg-color">IpAddress</span>
                     </a>
                     
                 </div>
