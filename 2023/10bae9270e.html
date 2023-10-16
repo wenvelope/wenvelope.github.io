@@ -4,8 +4,8 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="jupyter画图出现表格的问题, 友利奈绪">
-    <meta name="description" content="问题总结">
+    <meta name="keywords" content="在android通过串口打脑电标签, 友利奈绪">
+    <meta name="description" content="代码记录">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>jupyter画图出现表格的问题 | 友利奈绪</title>
+    <title>在android通过串口打脑电标签 | 友利奈绪</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/wenvelope/wenvelope.github.io/logo.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/wenvelope/wenvelope.github.io/libs/awesome/css/all.min.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">jupyter画图出现表格的问题</h1>
+                    <h1 class="description center-align post-title">在android通过串口打脑电标签</h1>
                 </div>
             </div>
         </div>
@@ -440,16 +440,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/python/">
-                                <span class="chip bg-color">python</span>
+                            <a href="/tags/kotlin/">
+                                <span class="chip bg-color">kotlin</span>
                             </a>
                         
-                            <a href="/tags/jupyter/">
-                                <span class="chip bg-color">jupyter</span>
+                            <a href="/tags/serialPort/">
+                                <span class="chip bg-color">serialPort</span>
                             </a>
                         
-                            <a href="/tags/mne/">
-                                <span class="chip bg-color">mne</span>
+                            <a href="/tags/BCI/">
+                                <span class="chip bg-color">BCI</span>
                             </a>
                         
                     </div>
@@ -473,7 +473,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-08-21
+                    2023-10-16
                 </div>
                 
 
@@ -497,9 +497,127 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>有时候使用mne自带的画图在jupyter中会出现网格 但是并没有设置</p>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#在画图前</span>
-plt<span class="token punctuation">.</span>rcParams<span class="token punctuation">[</span><span class="token string">'axes.grid'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">False</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+                <pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">package</span> com<span class="token punctuation">.</span>wuhongru<span class="token punctuation">.</span>mifndroid<span class="token punctuation">.</span>core
+
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>content<span class="token punctuation">.</span>BroadcastReceiver
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>content<span class="token punctuation">.</span>Context
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>content<span class="token punctuation">.</span>Intent
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>content<span class="token punctuation">.</span>IntentFilter
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>hardware<span class="token punctuation">.</span>usb<span class="token punctuation">.</span>UsbManager
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>hoho<span class="token punctuation">.</span>android<span class="token punctuation">.</span>usbserial<span class="token punctuation">.</span>driver<span class="token punctuation">.</span>UsbSerialPort
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>hoho<span class="token punctuation">.</span>android<span class="token punctuation">.</span>usbserial<span class="token punctuation">.</span>driver<span class="token punctuation">.</span>UsbSerialProber
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>wuhongru<span class="token punctuation">.</span>mifndroid<span class="token punctuation">.</span>MifndroidApplication
+<span class="token keyword">import</span> kotlinx<span class="token punctuation">.</span>coroutines<span class="token punctuation">.</span>CoroutineScope
+<span class="token keyword">import</span> kotlinx<span class="token punctuation">.</span>coroutines<span class="token punctuation">.</span>Dispatchers
+<span class="token keyword">import</span> kotlinx<span class="token punctuation">.</span>coroutines<span class="token punctuation">.</span>coroutineScope
+<span class="token keyword">import</span> kotlinx<span class="token punctuation">.</span>coroutines<span class="token punctuation">.</span>delay
+<span class="token keyword">import</span> kotlinx<span class="token punctuation">.</span>coroutines<span class="token punctuation">.</span>launch
+
+
+<span class="token keyword">class</span> UsbUtil <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token keyword">var</span> port<span class="token operator">:</span> UsbSerialPort<span class="token operator">?</span> <span class="token operator">=</span> <span class="token keyword">null</span>
+    <span class="token keyword">private</span> <span class="token keyword">var</span> deviceNum <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">var</span> isConnected <span class="token operator">=</span> <span class="token boolean">false</span>
+        <span class="token keyword">private</span> <span class="token keyword">set</span>
+    <span class="token keyword">var</span> isUsbInserted <span class="token operator">=</span> <span class="token boolean">false</span>
+        <span class="token keyword">private</span> <span class="token keyword">set</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">var</span> mUsbReceiver <span class="token operator">=</span> <span class="token keyword">object</span> <span class="token operator">:</span> <span class="token function">BroadcastReceiver</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">onReceive</span><span class="token punctuation">(</span>context<span class="token operator">:</span> Context<span class="token punctuation">,</span> intent<span class="token operator">:</span> Intent<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            intent<span class="token punctuation">.</span>action<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">let</span> <span class="token punctuation">&#123;</span>
+                isUsbInserted <span class="token operator">=</span> it <span class="token operator">==</span> UsbManager<span class="token punctuation">.</span>ACTION_USB_DEVICE_ATTACHED
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">init</span> <span class="token punctuation">&#123;</span>
+        MifndroidApplication<span class="token punctuation">.</span>mContext<span class="token punctuation">.</span><span class="token function">registerReceiver</span><span class="token punctuation">(</span>
+            mUsbReceiver<span class="token punctuation">,</span> <span class="token function">IntentFilter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apply</span> <span class="token punctuation">&#123;</span>
+                <span class="token function">addAction</span><span class="token punctuation">(</span>UsbManager<span class="token punctuation">.</span>ACTION_USB_DEVICE_ATTACHED<span class="token punctuation">)</span>
+                <span class="token function">addAction</span><span class="token punctuation">(</span>UsbManager<span class="token punctuation">.</span>ACTION_USB_DEVICE_DETACHED<span class="token punctuation">)</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">companion</span> <span class="token keyword">object</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">val</span> instance <span class="token keyword">by</span> lazy <span class="token punctuation">&#123;</span>
+            <span class="token function">UsbUtil</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">fun</span> <span class="token function">connect</span><span class="token punctuation">(</span>context<span class="token operator">:</span> Context<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">val</span> usbManager <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">getSystemService</span><span class="token punctuation">(</span>Context<span class="token punctuation">.</span>USB_SERVICE<span class="token punctuation">)</span> <span class="token keyword">as</span> UsbManager
+        <span class="token keyword">val</span> availableDriver <span class="token operator">=</span> UsbSerialProber<span class="token punctuation">.</span><span class="token function">getDefaultProber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">findAllDrivers</span><span class="token punctuation">(</span>usbManager<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>availableDriver<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            isConnected <span class="token operator">=</span> <span class="token boolean">false</span>
+            <span class="token keyword">return</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">val</span> driver <span class="token operator">=</span> availableDriver<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        deviceNum <span class="token operator">=</span> availableDriver<span class="token punctuation">.</span>size
+        <span class="token keyword">val</span> connection <span class="token operator">=</span> usbManager<span class="token punctuation">.</span><span class="token function">openDevice</span><span class="token punctuation">(</span>driver<span class="token punctuation">.</span>device<span class="token punctuation">)</span> <span class="token operator">?:</span> kotlin<span class="token punctuation">.</span><span class="token function">run</span> <span class="token punctuation">&#123;</span>
+            isConnected <span class="token operator">=</span> <span class="token boolean">false</span>
+            <span class="token keyword">return</span>
+        <span class="token punctuation">&#125;</span>
+        port <span class="token operator">=</span> driver<span class="token punctuation">.</span>ports<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>port <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+                port<span class="token operator">!!</span><span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>connection<span class="token punctuation">)</span>
+                <span class="token comment">//115200</span>
+                port<span class="token operator">!!</span><span class="token punctuation">.</span><span class="token function">setParameters</span><span class="token punctuation">(</span><span class="token number">115200</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> UsbSerialPort<span class="token punctuation">.</span>STOPBITS_1<span class="token punctuation">,</span> UsbSerialPort<span class="token punctuation">.</span>PARITY_NONE<span class="token punctuation">)</span>
+                isConnected <span class="token operator">=</span> <span class="token boolean">true</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token operator">:</span> Exception<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                isConnected <span class="token operator">=</span> <span class="token boolean">false</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+            isConnected <span class="token operator">=</span> <span class="token boolean">false</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">fun</span> <span class="token function">disConnect</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        port<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        port <span class="token operator">=</span> <span class="token keyword">null</span>
+        isConnected <span class="token operator">=</span> <span class="token boolean">false</span>
+    <span class="token punctuation">&#125;</span>
+
+
+    <span class="token keyword">suspend</span> <span class="token keyword">fun</span> <span class="token function">writeMarkInNeuracle</span><span class="token punctuation">(</span>message<span class="token operator">:</span> Int<span class="token punctuation">)</span> <span class="token operator">=</span>
+        coroutineScope <span class="token punctuation">&#123;</span>
+            <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+                <span class="token function">launch</span><span class="token punctuation">(</span>Dispatchers<span class="token punctuation">.</span>IO<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    port<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">let</span> <span class="token punctuation">&#123;</span>
+                        <span class="token keyword">val</span> header <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"01E10100"</span></span>
+                        <span class="token keyword">var</span> hexString <span class="token operator">=</span> Integer<span class="token punctuation">.</span><span class="token function">toHexString</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span>
+                        <span class="token keyword">if</span> <span class="token punctuation">(</span>hexString<span class="token punctuation">.</span>length <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                            hexString <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"0</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$</span><span class="token expression">hexString</span></span><span class="token string">"</span></span>
+                        <span class="token punctuation">&#125;</span>
+                        hexString <span class="token operator">=</span> hexString<span class="token punctuation">.</span><span class="token function">uppercase</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                        <span class="token keyword">val</span> command <span class="token operator">=</span> header <span class="token operator">+</span> hexString
+                        <span class="token keyword">val</span> trueCommand <span class="token operator">=</span> command<span class="token punctuation">.</span><span class="token function">chunked</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment">// 每两个字符一组</span>
+                            <span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">&#123;</span> it<span class="token punctuation">.</span><span class="token function">toUByte</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toByte</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span> <span class="token comment">// 转换为字节</span>
+                            <span class="token punctuation">.</span><span class="token function">toByteArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                        it<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>trueCommand<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                    <span class="token punctuation">&#125;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token operator">:</span> Exception<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+
+
+    <span class="token keyword">fun</span> <span class="token function">writeMarkInNeurscan</span><span class="token punctuation">(</span>message<span class="token operator">:</span> Int<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">CoroutineScope</span><span class="token punctuation">(</span>Dispatchers<span class="token punctuation">.</span>IO<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">launch</span> <span class="token punctuation">&#123;</span>
+            port<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">let</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">val</span> command <span class="token operator">=</span> <span class="token function">byteArrayOf</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span><span class="token function">toByte</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> message<span class="token punctuation">.</span><span class="token function">shr</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toByte</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token keyword">val</span> command0 <span class="token operator">=</span> <span class="token function">byteArrayOf</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">.</span><span class="token function">toByte</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">.</span><span class="token function">shr</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toByte</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                it<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>command<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+                it<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>command0<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -525,7 +643,7 @@ plt<span class="token punctuation">.</span>rcParams<span class="token punctuatio
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wenvelope.github.io/2023/08fb50097e.html">https://wenvelope.github.io/2023/08fb50097e.html</a>
+                    <a href="https://wenvelope.github.io/2023/10bae9270e.html">https://wenvelope.github.io/2023/10bae9270e.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -563,16 +681,16 @@ plt<span class="token punctuation">.</span>rcParams<span class="token punctuatio
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/python/">
-                                    <span class="chip bg-color">python</span>
+                                <a href="/tags/kotlin/">
+                                    <span class="chip bg-color">kotlin</span>
                                 </a>
                             
-                                <a href="/tags/jupyter/">
-                                    <span class="chip bg-color">jupyter</span>
+                                <a href="/tags/serialPort/">
+                                    <span class="chip bg-color">serialPort</span>
                                 </a>
                             
-                                <a href="/tags/mne/">
-                                    <span class="chip bg-color">mne</span>
+                                <a href="/tags/BCI/">
+                                    <span class="chip bg-color">BCI</span>
                                 </a>
                             
                         </div>
@@ -1012,9 +1130,10 @@ plt<span class="token punctuation">.</span>rcParams<span class="token punctuatio
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2023/10bae9270e.html">
                     <div class="card-image">
@@ -1031,9 +1150,9 @@ plt<span class="token punctuation">.</span>rcParams<span class="token punctuatio
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-10-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1046,6 +1165,7 @@ plt<span class="token punctuation">.</span>rcParams<span class="token punctuatio
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1072,30 +1192,30 @@ plt<span class="token punctuation">.</span>rcParams<span class="token punctuatio
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/08e10f29f8.html">
+                <a href="/2023/08fb50097e.html">
                     <div class="card-image">
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Android获取WIFI信息的方法">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="jupyter画图出现表格的问题">
                         
-                        <span class="card-title">Android获取WIFI信息的方法</span>
+                        <span class="card-title">jupyter画图出现表格的问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            工具方法总结
+                            问题总结
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-08-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-08-21
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/android/" class="post-category">
-                                    android
+                            <a href="/categories/BCI/" class="post-category">
+                                    BCI
                                 </a>
                             
                             
@@ -1105,12 +1225,16 @@ plt<span class="token punctuation">.</span>rcParams<span class="token punctuatio
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/ConnectivityManager/">
-                        <span class="chip bg-color">ConnectivityManager</span>
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
                     </a>
                     
-                    <a href="/tags/IpAddress/">
-                        <span class="chip bg-color">IpAddress</span>
+                    <a href="/tags/jupyter/">
+                        <span class="chip bg-color">jupyter</span>
+                    </a>
+                    
+                    <a href="/tags/mne/">
+                        <span class="chip bg-color">mne</span>
                     </a>
                     
                 </div>
