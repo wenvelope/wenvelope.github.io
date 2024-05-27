@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>AndroidWIFI调试</title>
+      <link href="/2023/05b955d270.html"/>
+      <url>/2023/05b955d270.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="版本要求"><a href="#版本要求" class="headerlink" title="版本要求"></a>版本要求</h1><blockquote><p>真机要求安卓11及以上</p></blockquote><h1 id="android抽风扫码连接不上的问题"><a href="#android抽风扫码连接不上的问题" class="headerlink" title="android抽风扫码连接不上的问题"></a>android抽风扫码连接不上的问题</h1><ul><li>打开开发者模式 无线调试点进去</li><li>找到对应的配对码 和ip地址和端口<pre class="line-numbers language-none"><code class="language-none">adb pair &lt;ip&gt;:&lt;port&gt;&#x2F;&#x2F;连接后会让你输入配对码Enter paring code: &#x2F;&#x2F;输入手机上的配对码即可<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li><li>配对成功后 找到无线调试的ip地址和端口<code>注意和配对的ip和端口区分</code><pre class="line-numbers language-none"><code class="language-none">adb connect &lt;ip&gt;:&lt;port&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li><li>即可连接成功</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> android </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> android </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>DialogFragment+ViewBinding简单封装</title>
       <link href="/2023/02c05e635b.html"/>
       <url>/2023/02c05e635b.html</url>
