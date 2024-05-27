@@ -5,8 +5,8 @@
     
     <entry>
       <title>AndroidWIFI调试</title>
-      <link href="/2023/05b955d270.html"/>
-      <url>/2023/05b955d270.html</url>
+      <link href="/2024/05b955d270.html"/>
+      <url>/2024/05b955d270.html</url>
       
         <content type="html"><![CDATA[<h1 id="版本要求"><a href="#版本要求" class="headerlink" title="版本要求"></a>版本要求</h1><blockquote><p>真机要求安卓11及以上</p></blockquote><h1 id="android抽风扫码连接不上的问题"><a href="#android抽风扫码连接不上的问题" class="headerlink" title="android抽风扫码连接不上的问题"></a>android抽风扫码连接不上的问题</h1><ul><li>打开开发者模式 无线调试点进去</li><li>找到对应的配对码 和ip地址和端口<pre class="line-numbers language-none"><code class="language-none">adb pair &lt;ip&gt;:&lt;port&gt;&#x2F;&#x2F;连接后会让你输入配对码Enter paring code: &#x2F;&#x2F;输入手机上的配对码即可<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li><li>配对成功后 找到无线调试的ip地址和端口<code>注意和配对的ip和端口区分</code><pre class="line-numbers language-none"><code class="language-none">adb connect &lt;ip&gt;:&lt;port&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li><li>即可连接成功</li></ul>]]></content>
       
@@ -585,6 +585,33 @@
     
     
     <entry>
+      <title>SVGAImageView使用总结</title>
+      <link href="/2022/073dd4e884.html"/>
+      <url>/2022/073dd4e884.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="依赖导入"><a href="#依赖导入" class="headerlink" title="依赖导入"></a>依赖导入</h2><pre class="line-numbers language-gradle" data-language="gradle"><code class="language-gradle">allprojects <span class="token punctuation">&#123;</span>    <span class="token keyword">repositories</span> <span class="token punctuation">&#123;</span>        <span class="token punctuation">...</span>        maven <span class="token punctuation">&#123;</span> url <span class="token string">'https://jitpack.io'</span> <span class="token punctuation">&#125;</span>    <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><pre class="line-numbers language-gradle" data-language="gradle"><code class="language-gradle"><span class="token keyword">implementation</span> <span class="token string">'com.github.yyued:SVGAPlayer-Android:latest'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="静态使用"><a href="#静态使用" class="headerlink" title="静态使用"></a>静态使用</h2><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>com.opensource.svgaplayer.SVGAImageView</span>    <span class="token attr-name"><span class="token namespace">android:</span>layout_height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>match_parent<span class="token punctuation">"</span></span>    <span class="token attr-name"><span class="token namespace">android:</span>layout_width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>match_parent<span class="token punctuation">"</span></span>    <span class="token attr-name"><span class="token namespace">app:</span>source</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>xxx.svga<span class="token punctuation">"</span></span>    <span class="token attr-name"><span class="token namespace">app:</span>autoPlay</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span>    <span class="token attr-name"><span class="token namespace">android:</span>background</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#000<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> android </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> android </tag>
+            
+            <tag> SVGA </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Android属性动画</title>
       <link href="/2022/07c521d2cf.html"/>
       <url>/2022/07c521d2cf.html</url>
@@ -606,33 +633,6 @@
             <tag> kotlin </tag>
             
             <tag> 属性动画 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>SVGAImageView使用总结</title>
-      <link href="/2022/073dd4e884.html"/>
-      <url>/2022/073dd4e884.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="依赖导入"><a href="#依赖导入" class="headerlink" title="依赖导入"></a>依赖导入</h2><pre class="line-numbers language-gradle" data-language="gradle"><code class="language-gradle">allprojects <span class="token punctuation">&#123;</span>    <span class="token keyword">repositories</span> <span class="token punctuation">&#123;</span>        <span class="token punctuation">...</span>        maven <span class="token punctuation">&#123;</span> url <span class="token string">'https://jitpack.io'</span> <span class="token punctuation">&#125;</span>    <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><pre class="line-numbers language-gradle" data-language="gradle"><code class="language-gradle"><span class="token keyword">implementation</span> <span class="token string">'com.github.yyued:SVGAPlayer-Android:latest'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="静态使用"><a href="#静态使用" class="headerlink" title="静态使用"></a>静态使用</h2><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>com.opensource.svgaplayer.SVGAImageView</span>    <span class="token attr-name"><span class="token namespace">android:</span>layout_height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>match_parent<span class="token punctuation">"</span></span>    <span class="token attr-name"><span class="token namespace">android:</span>layout_width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>match_parent<span class="token punctuation">"</span></span>    <span class="token attr-name"><span class="token namespace">app:</span>source</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>xxx.svga<span class="token punctuation">"</span></span>    <span class="token attr-name"><span class="token namespace">app:</span>autoPlay</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span>    <span class="token attr-name"><span class="token namespace">android:</span>background</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#000<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> android </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> android </tag>
-            
-            <tag> SVGA </tag>
             
         </tags>
       
