@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title>pyqt的gridlayout实现动态排列</title>
+      <link href="/2024/107fa7653f.html"/>
+      <url>/2024/107fa7653f.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="业务场景"><a href="#业务场景" class="headerlink" title="业务场景"></a>业务场景</h1><blockquote><p>gridlayout不是固定的布局内容 内容数量也不固定 但是又要铺满整个布局 当内容数量变化的时候 需要重新计算每个item的宽高 使得尽量铺满整个布局 同时又要保证每个item的大小相同 </p></blockquote><pre class="line-numbers language-none"><code class="language-none">def reLayoutSpectrum(self):    # 设置可见性    for i in range(self.channel_count):        if i not in self.visible_leads:            self.spectrumPlots[i][1].setVisible(False)        else:            self.spectrumPlots[i][1].setVisible(True)    # 清空布局    for i in reversed(range(self.spectrumLayout.count())):        widget &#x3D; self.spectrumLayout.itemAt(i).widget()        self.spectrumLayout.removeWidget(widget)        if widget is not None:            widget.setParent(None)  # 从布局中移除    # 把所有行和列的拉伸因子设置为0 清空！    for row in range(self.spectrumLayout.rowCount()):        self.spectrumLayout.setRowStretch(row, 0)    for col in range(self.spectrumLayout.columnCount()):        self.spectrumLayout.setColumnStretch(col, 0)    rows, cols &#x3D; self.calculateGrid()    for index, plotIndex in enumerate(self.visible_leads):        row &#x3D; index &#x2F;&#x2F; cols        col &#x3D; index % cols        # 设置每个导联的高度        self.spectrumLayout.addWidget(self.spectrumPlots[plotIndex][0], row, col)    # 设置行和列的拉伸因子以确保所有行和列的高度和宽度相等    for row in range(rows):        self.spectrumLayout.setRowStretch(row, 1)    for col in range(cols):        self.spectrumLayout.setColumnStretch(col, 1)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> pyqt </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> pyqt </tag>
+            
+            <tag> gridlayout </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>SSE协议</title>
+      <link href="/2024/077c920109.html"/>
+      <url>/2024/077c920109.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 后端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> sse </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>AndroidWIFI调试</title>
       <link href="/2024/05b955d270.html"/>
       <url>/2024/05b955d270.html</url>

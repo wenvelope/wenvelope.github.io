@@ -4,8 +4,8 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="AndroidWIFI调试, 友利奈绪">
-    <meta name="description" content="android studio抽风 可以用adb手动连接">
+    <meta name="keywords" content="pyqt的gridlayout实现动态排列, 友利奈绪">
+    <meta name="description" content="每次设置之前需要清零">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>AndroidWIFI调试 | 友利奈绪</title>
+    <title>pyqt的gridlayout实现动态排列 | 友利奈绪</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/wenvelope/wenvelope.github.io/logo.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/wenvelope/wenvelope.github.io/libs/awesome/css/all.min.css">
@@ -319,12 +319,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">AndroidWIFI调试</h1>
+                    <h1 class="description center-align post-title">pyqt的gridlayout实现动态排列</h1>
                 </div>
             </div>
         </div>
@@ -440,8 +440,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/android/">
-                                <span class="chip bg-color">android</span>
+                            <a href="/tags/pyqt/">
+                                <span class="chip bg-color">pyqt</span>
+                            </a>
+                        
+                            <a href="/tags/gridlayout/">
+                                <span class="chip bg-color">gridlayout</span>
                             </a>
                         
                     </div>
@@ -452,8 +456,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/android/" class="post-category">
-                                android
+                            <a href="/categories/pyqt/" class="post-category">
+                                pyqt
                             </a>
                         
                     </div>
@@ -465,7 +469,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-05-27
+                    2024-10-06
                 </div>
                 
 
@@ -489,19 +493,43 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="版本要求"><a href="#版本要求" class="headerlink" title="版本要求"></a>版本要求</h1><blockquote>
-<p>真机要求安卓11及以上</p>
+                <h1 id="业务场景"><a href="#业务场景" class="headerlink" title="业务场景"></a>业务场景</h1><blockquote>
+<p>gridlayout不是固定的布局内容 内容数量也不固定 但是又要铺满整个布局 当内容数量变化的时候 需要重新计算每个item的宽高 使得尽量铺满整个布局 同时又要保证每个item的大小相同 </p>
 </blockquote>
-<h1 id="android抽风扫码连接不上的问题"><a href="#android抽风扫码连接不上的问题" class="headerlink" title="android抽风扫码连接不上的问题"></a>android抽风扫码连接不上的问题</h1><ul>
-<li>打开开发者模式 无线调试点进去</li>
-<li>找到对应的配对码 和ip地址和端口<pre class="line-numbers language-none"><code class="language-none">adb pair &lt;ip&gt;:&lt;port&gt;
-&#x2F;&#x2F;连接后会让你输入配对码
-Enter paring code: 
-&#x2F;&#x2F;输入手机上的配对码即可<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
-<li>配对成功后 找到无线调试的ip地址和端口<code>注意和配对的ip和端口区分</code><pre class="line-numbers language-none"><code class="language-none">adb connect &lt;ip&gt;:&lt;port&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
-<li>即可连接成功</li>
-</ul>
+<pre class="line-numbers language-none"><code class="language-none">def reLayoutSpectrum(self):
+    # 设置可见性
+    for i in range(self.channel_count):
+        if i not in self.visible_leads:
+            self.spectrumPlots[i][1].setVisible(False)
+        else:
+            self.spectrumPlots[i][1].setVisible(True)
 
+    # 清空布局
+    for i in reversed(range(self.spectrumLayout.count())):
+        widget &#x3D; self.spectrumLayout.itemAt(i).widget()
+        self.spectrumLayout.removeWidget(widget)
+        if widget is not None:
+            widget.setParent(None)  # 从布局中移除
+
+    # 把所有行和列的拉伸因子设置为0 清空！
+    for row in range(self.spectrumLayout.rowCount()):
+        self.spectrumLayout.setRowStretch(row, 0)
+    for col in range(self.spectrumLayout.columnCount()):
+        self.spectrumLayout.setColumnStretch(col, 0)
+
+    rows, cols &#x3D; self.calculateGrid()
+
+    for index, plotIndex in enumerate(self.visible_leads):
+        row &#x3D; index &#x2F;&#x2F; cols
+        col &#x3D; index % cols
+        # 设置每个导联的高度
+        self.spectrumLayout.addWidget(self.spectrumPlots[plotIndex][0], row, col)
+
+    # 设置行和列的拉伸因子以确保所有行和列的高度和宽度相等
+    for row in range(rows):
+        self.spectrumLayout.setRowStretch(row, 1)
+    for col in range(cols):
+        self.spectrumLayout.setColumnStretch(col, 1)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -527,7 +555,7 @@ Enter paring code:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wenvelope.github.io/2024/05b955d270.html">https://wenvelope.github.io/2024/05b955d270.html</a>
+                    <a href="https://wenvelope.github.io/2024/107fa7653f.html">https://wenvelope.github.io/2024/107fa7653f.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -565,8 +593,12 @@ Enter paring code:
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/android/">
-                                    <span class="chip bg-color">android</span>
+                                <a href="/tags/pyqt/">
+                                    <span class="chip bg-color">pyqt</span>
+                                </a>
+                            
+                                <a href="/tags/gridlayout/">
+                                    <span class="chip bg-color">gridlayout</span>
                                 </a>
                             
                         </div>
@@ -1006,9 +1038,63 @@ Enter paring code:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2024/107fa7653f.html">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="pyqt的gridlayout实现动态排列">
+                        
+                        <span class="card-title">pyqt的gridlayout实现动态排列</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            每次设置之前需要清零
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/pyqt/" class="post-category">
+                                    pyqt
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/pyqt/">
+                        <span class="chip bg-color">pyqt</span>
+                    </a>
+                    
+                    <a href="/tags/gridlayout/">
+                        <span class="chip bg-color">gridlayout</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2024/077c920109.html">
                     <div class="card-image">
@@ -1025,9 +1111,9 @@ Enter paring code:
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-07-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-01
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1045,58 +1131,6 @@ Enter paring code:
                     
                     <a href="/tags/sse/">
                         <span class="chip bg-color">sse</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2023/02c05e635b.html">
-                    <div class="card-image">
-                        
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="DialogFragment+ViewBinding简单封装">
-                        
-                        <span class="card-title">DialogFragment+ViewBinding简单封装</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            DialogFragment
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-04
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/android/" class="post-category">
-                                    android
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/android/">
-                        <span class="chip bg-color">android</span>
-                    </a>
-                    
-                    <a href="/tags/DialogFragment/">
-                        <span class="chip bg-color">DialogFragment</span>
                     </a>
                     
                 </div>
