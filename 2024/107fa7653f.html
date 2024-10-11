@@ -496,40 +496,40 @@
                 <h1 id="业务场景"><a href="#业务场景" class="headerlink" title="业务场景"></a>业务场景</h1><blockquote>
 <p>gridlayout不是固定的布局内容 内容数量也不固定 但是又要铺满整个布局 当内容数量变化的时候 需要重新计算每个item的宽高 使得尽量铺满整个布局 同时又要保证每个item的大小相同 </p>
 </blockquote>
-<pre class="line-numbers language-none"><code class="language-none">def reLayoutSpectrum(self):
-    # 设置可见性
-    for i in range(self.channel_count):
-        if i not in self.visible_leads:
-            self.spectrumPlots[i][1].setVisible(False)
-        else:
-            self.spectrumPlots[i][1].setVisible(True)
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">reLayoutSpectrum</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 设置可见性</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>channel_count<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> i <span class="token keyword">not</span> <span class="token keyword">in</span> self<span class="token punctuation">.</span>visible_leads<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>spectrumPlots<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>setVisible<span class="token punctuation">(</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>spectrumPlots<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>setVisible<span class="token punctuation">(</span><span class="token boolean">True</span><span class="token punctuation">)</span>
 
-    # 清空布局
-    for i in reversed(range(self.spectrumLayout.count())):
-        widget &#x3D; self.spectrumLayout.itemAt(i).widget()
-        self.spectrumLayout.removeWidget(widget)
-        if widget is not None:
-            widget.setParent(None)  # 从布局中移除
+    <span class="token comment"># 清空布局</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">reversed</span><span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>spectrumLayout<span class="token punctuation">.</span>count<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        widget <span class="token operator">=</span> self<span class="token punctuation">.</span>spectrumLayout<span class="token punctuation">.</span>itemAt<span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span>widget<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>spectrumLayout<span class="token punctuation">.</span>removeWidget<span class="token punctuation">(</span>widget<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> widget <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            widget<span class="token punctuation">.</span>setParent<span class="token punctuation">(</span><span class="token boolean">None</span><span class="token punctuation">)</span>  <span class="token comment"># 从布局中移除</span>
 
-    # 把所有行和列的拉伸因子设置为0 清空！
-    for row in range(self.spectrumLayout.rowCount()):
-        self.spectrumLayout.setRowStretch(row, 0)
-    for col in range(self.spectrumLayout.columnCount()):
-        self.spectrumLayout.setColumnStretch(col, 0)
+    <span class="token comment"># 把所有行和列的拉伸因子设置为0 清空！</span>
+    <span class="token keyword">for</span> row <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>spectrumLayout<span class="token punctuation">.</span>rowCount<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>spectrumLayout<span class="token punctuation">.</span>setRowStretch<span class="token punctuation">(</span>row<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> col <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>spectrumLayout<span class="token punctuation">.</span>columnCount<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>spectrumLayout<span class="token punctuation">.</span>setColumnStretch<span class="token punctuation">(</span>col<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
 
-    rows, cols &#x3D; self.calculateGrid()
+    rows<span class="token punctuation">,</span> cols <span class="token operator">=</span> self<span class="token punctuation">.</span>calculateGrid<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-    for index, plotIndex in enumerate(self.visible_leads):
-        row &#x3D; index &#x2F;&#x2F; cols
-        col &#x3D; index % cols
-        # 设置每个导联的高度
-        self.spectrumLayout.addWidget(self.spectrumPlots[plotIndex][0], row, col)
+    <span class="token keyword">for</span> index<span class="token punctuation">,</span> plotIndex <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>visible_leads<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        row <span class="token operator">=</span> index <span class="token operator">//</span> cols
+        col <span class="token operator">=</span> index <span class="token operator">%</span> cols
+        <span class="token comment"># 设置每个导联的高度</span>
+        self<span class="token punctuation">.</span>spectrumLayout<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>self<span class="token punctuation">.</span>spectrumPlots<span class="token punctuation">[</span>plotIndex<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> row<span class="token punctuation">,</span> col<span class="token punctuation">)</span>
 
-    # 设置行和列的拉伸因子以确保所有行和列的高度和宽度相等
-    for row in range(rows):
-        self.spectrumLayout.setRowStretch(row, 1)
-    for col in range(cols):
-        self.spectrumLayout.setColumnStretch(col, 1)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token comment"># 设置行和列的拉伸因子以确保所有行和列的高度和宽度相等</span>
+    <span class="token keyword">for</span> row <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>rows<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>spectrumLayout<span class="token punctuation">.</span>setRowStretch<span class="token punctuation">(</span>row<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> col <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>cols<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>spectrumLayout<span class="token punctuation">.</span>setColumnStretch<span class="token punctuation">(</span>col<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
