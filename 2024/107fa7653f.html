@@ -518,7 +518,7 @@
         self<span class="token punctuation">.</span>spectrumLayout<span class="token punctuation">.</span>setColumnStretch<span class="token punctuation">(</span>col<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
 
     rows<span class="token punctuation">,</span> cols <span class="token operator">=</span> self<span class="token punctuation">.</span>calculateGrid<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
+            
     <span class="token keyword">for</span> index<span class="token punctuation">,</span> plotIndex <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>visible_leads<span class="token punctuation">)</span><span class="token punctuation">:</span>
         row <span class="token operator">=</span> index <span class="token operator">//</span> cols
         col <span class="token operator">=</span> index <span class="token operator">%</span> cols
