@@ -245,26 +245,12 @@ mark {
 /*    !* background-image: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%); *!*/
 /*}*/
 
-/* 动态渐变 */
-@keyframes gradientBG {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
+
 
 .bg-color {
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    opacity: 0.8;  /* 透明度 */
-    animation: gradientBG 15s ease infinite;
+    background-image: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%); //修改成自己喜欢的颜色值
+    opacity: 0.8;  //透明效果 值范围 0~1，看情况自己修改
 }
-
 
 .text-color {
     color: #0f9d58 !important;
@@ -401,8 +387,8 @@ header .side-nav .social-link {
     height: 45px;
     line-height: 45px;
     font-size: 1rem;
-    color: #fff;
-    border: 1px solid #fff;
+    color: #344e86;
+    border: 1px solid #344e86;
     background-color: transparent;
     border-radius: 30px;
     box-shadow: none;
@@ -532,7 +518,7 @@ header .side-nav .social-link {
 .cover-social-link a {
     padding: 0 15px;
     font-size: 1.35rem;
-    color: #fff;
+    color: #344e86;
 }
 
 header .go-back {
