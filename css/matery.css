@@ -240,10 +240,31 @@ mark {
     margin-bottom: 0;
 }
 
-.bg-color {
-    background-color: rgba(1, 1, 1, 0.1);
-    /* background-image: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%); */
+/*.bg-color {*/
+/*    background-color: rgba(1, 1, 1, 0.1);*/
+/*    !* background-image: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%); *!*/
+/*}*/
+
+/* 动态渐变 */
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
+
+.bg-color {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    opacity: 0.8;  /* 透明度 */
+    animation: gradientBG 15s ease infinite;
+}
+
 
 .text-color {
     color: #0f9d58 !important;
@@ -551,10 +572,10 @@ header .go-back i {
     height: 40vh !important;
 }
 
-.bg-cover:after {
-    -webkit-animation: rainbow 60s infinite;
-    animation: rainbow 60s infinite;
-}
+/*.bg-cover:after {*/
+/*    -webkit-animation: rainbow 60s infinite;*/
+/*    animation: rainbow 60s infinite;*/
+/*}*/
 
 .bg-cover:before,
 .bg-cover:after {
