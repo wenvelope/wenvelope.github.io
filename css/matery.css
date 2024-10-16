@@ -387,9 +387,9 @@ header .side-nav .social-link {
     height: 45px;
     line-height: 45px;
     font-size: 1rem;
-    color: #344e86;
-    border: 1px solid #344e86;
-    background-color: transparent;
+    color: #344e86 !important;
+    border: 1px solid #344e86 !important;
+    background-color: transparent !important;
     border-radius: 30px;
     box-shadow: none;
 }
@@ -949,7 +949,7 @@ article .article-tags .chip {
     font-weight: 400;
     height: 22px;
     line-height: 22px;
-    color: #fff;
+    color: #000000;
     border-radius: 10px;
 }
 
