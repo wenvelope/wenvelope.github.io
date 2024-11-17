@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wenvelope.github.io/2024/1176c7cf6e.html</loc>
+    
+    <lastmod>2024-11-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://wenvelope.github.io/2024/109a48dbf2.html</loc>
     
     <lastmod>2024-10-16</lastmod>
@@ -373,7 +382,7 @@
 
   <url>
     <loc>https://wenvelope.github.io/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -381,224 +390,231 @@
   
   <url>
     <loc>https://wenvelope.github.io/tags/android/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/Handler/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/kotlin/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/java/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/ssh/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/vim/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/Linux/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/BFS/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/Git/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/SQLite/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/SVGA/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BB/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/RecyclerView/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/ItemDecoration/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/Room/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/jetpack/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/view/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/coroutine/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/%E6%8E%92%E5%BA%8F/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/activity/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/Flow/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/DialogFragment/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/sse/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/pyqt/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/gridlayout/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/android-studio/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/%E5%AE%89%E5%8D%93%E8%99%9A%E6%8B%9F%E6%9C%BA/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/tags/kotlin-multiplatform/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenvelope.github.io/tags/room/</loc>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -607,63 +623,70 @@
   
   <url>
     <loc>https://wenvelope.github.io/categories/android/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/categories/%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/categories/Linux/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/categories/Git/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/categories/Kotlin/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/categories/%E5%90%8E%E7%AB%AF/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/categories/pyqt/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://wenvelope.github.io/categories/KMP%E5%BC%80%E5%8F%91%E5%A1%AB%E5%9D%91/</loc>
-    <lastmod>2024-10-16</lastmod>
+    <lastmod>2024-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenvelope.github.io/categories/KMP-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B0%83%E8%AF%95/</loc>
+    <lastmod>2024-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

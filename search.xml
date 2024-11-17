@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>KMP Android Database Inspector 不能在线链接数据库</title>
+      <link href="/2024/1176c7cf6e.html"/>
+      <url>/2024/1176c7cf6e.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="核心问题"><a href="#核心问题" class="headerlink" title="核心问题"></a>核心问题</h2><p>在<code>KMP项目</code>中，使用Room数据库时，Android Studio的Database Inspector不能在线链接数据库，导致无法查看数据库中的数据。</p><h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><blockquote><p>在KMP项目中出现这个问题 极大概率是因为 使用的绑定的数据库驱动程序 解决办法就是使用系统自带的驱动程序。</p></blockquote><ol><li>打开数据库类所在文件</li><li>删掉下面这行代码 <pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token punctuation">.</span><span class="token function">setDriver</span><span class="token punctuation">(</span><span class="token function">BundledSQLiteDriver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li><li>把虚拟机上的应用卸载掉 重新运行项目</li><li>重新连接数据库即可查看数据</li></ol><blockquote><p>上面这行代码可能在你的公共源集或者安卓源集中</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> KMP 数据库调试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> android studio </tag>
+            
+            <tag> kotlin multiplatform </tag>
+            
+            <tag> room </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>KMP 适配 android ios 沉浸式状态栏</title>
       <link href="/2024/109a48dbf2.html"/>
       <url>/2024/109a48dbf2.html</url>
