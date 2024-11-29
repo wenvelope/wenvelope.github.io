@@ -4,8 +4,8 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="KMP 适配 android ios 沉浸式状态栏, 友利奈绪">
-    <meta name="description" content="先设置绘制区域 再调整状态栏颜色 背景颜色以及边距">
+    <meta name="keywords" content="bottomSheet软键盘弹出问题, 友利奈绪">
+    <meta name="description" content="KMP 踩坑日记 bottomSheet软键盘弹出问题">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>KMP 适配 android ios 沉浸式状态栏 | 友利奈绪</title>
+    <title>bottomSheet软键盘弹出问题 | 友利奈绪</title>
     <link rel="icon" type="image/png" href="/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">KMP 适配 android ios 沉浸式状态栏</h1>
+                    <h1 class="description center-align post-title">bottomSheet软键盘弹出问题</h1>
                 </div>
             </div>
         </div>
@@ -438,6 +438,10 @@
                                 <span class="chip bg-color">kotlin multiplatform</span>
                             </a>
                         
+                            <a href="/tags/keyboard/">
+                                <span class="chip bg-color">keyboard</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -459,7 +463,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-10-17
+                    2024-11-29
                 </div>
                 
 
@@ -483,91 +487,66 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p> 在KMP项目中，需要适配android和ios的沉浸式状态栏 适配需要解决几个问题</p>
-<ol>
-<li>绘制区域 在安卓中有<code>普通绘制区域</code> 和 <code>系统绘制区域</code> 两种 系统绘制区域包括<br><code>状态栏</code> 和 <code>导航栏</code> 在ios上主要处理状态栏 默认情况下是不会绘制到状态栏 和 导航栏的 所以我们首先要让画面绘制延伸到状态栏和导航栏</li>
-<li>延伸之后 文字等组件可能显示在状态栏之上 我们需要调整边距使得组件正常显示，但是某些时候我们又需要让组件显示在状态栏之下，比如<br>播放器画面这个场景，所以需要根据实际业务调整。</li>
-<li>除了调整边距之外，还需要适配 light 和 dark主题下 背景颜色下 状态栏文字颜色是否可见以及某些情况下是否隐藏状态栏。</li>
-</ol>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><h3 id="1-绘制区域"><a href="#1-绘制区域" class="headerlink" title="1. 绘制区域"></a>1. 绘制区域</h3><h4 id="安卓"><a href="#安卓" class="headerlink" title="安卓"></a>安卓</h4><p>在安卓中，我们可以通过设置<code>enableEdgeToEdge()</code>来实现绘制区域的调整</p>
-<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">class</span> MainActivity <span class="token operator">:</span> <span class="token function">ComponentActivity</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">onCreate</span><span class="token punctuation">(</span>savedInstanceState<span class="token operator">:</span> Bundle<span class="token operator">?</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onCreate</span><span class="token punctuation">(</span>savedInstanceState<span class="token punctuation">)</span>
-        <span class="token comment">// 使得绘制区域延伸到屏幕边缘 包括 statusBar 和 navigationBar</span>
-        <span class="token function">enableEdgeToEdge</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token comment">// 设置内容</span>
-        setContent <span class="token punctuation">&#123;</span>
-            <span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="ios"><a href="#ios" class="headerlink" title="ios"></a>ios</h4><p>在ios中，我们可以通过设置<code>.ignoresSafeArea(edges: .all)</code>来实现绘制区域的调整<br>该文件默认为<code>ContentView.swift</code></p>
-<pre class="line-numbers language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">import</span> <span class="token class-name">UIKit</span>
-<span class="token keyword">import</span> <span class="token class-name">SwiftUI</span>
-<span class="token keyword">import</span> <span class="token class-name">ComposeApp</span>
-
-<span class="token keyword">struct</span> <span class="token class-name">ComposeView</span><span class="token punctuation">:</span> <span class="token class-name">UIViewControllerRepresentable</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">func</span> <span class="token function-definition function">makeUIViewController</span><span class="token punctuation">(</span>context<span class="token punctuation">:</span> <span class="token class-name">Context</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">UIViewController</span> <span class="token punctuation">&#123;</span>
-        <span class="token class-name">MainViewControllerKt</span><span class="token punctuation">.</span><span class="token class-name">MainViewController</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">&#125;</span>
-
-    <span class="token keyword">func</span> <span class="token function-definition function">updateUIViewController</span><span class="token punctuation">(</span><span class="token omit keyword">_</span> uiViewController<span class="token punctuation">:</span> <span class="token class-name">UIViewController</span><span class="token punctuation">,</span> context<span class="token punctuation">:</span> <span class="token class-name">Context</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token keyword">struct</span> <span class="token class-name">ContentView</span><span class="token punctuation">:</span> <span class="token class-name">View</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">var</span> body<span class="token punctuation">:</span> <span class="token keyword">some</span> <span class="token class-name">View</span> <span class="token punctuation">&#123;</span>
-        <span class="token class-name">ComposeView</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">ignoresSafeArea</span><span class="token punctuation">(</span>edges<span class="token punctuation">:</span> <span class="token punctuation">.</span>all<span class="token punctuation">)</span> <span class="token comment">// 使得内容扩充到状态栏</span>
-                <span class="token punctuation">.</span><span class="token function">ignoresSafeArea</span><span class="token punctuation">(</span><span class="token punctuation">.</span>keyboard<span class="token punctuation">)</span> <span class="token comment">// Compose has own keyboard handler</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="2-调整边距"><a href="#2-调整边距" class="headerlink" title="2. 调整边距"></a>2. 调整边距</h3><h4 id="安卓-IOS"><a href="#安卓-IOS" class="headerlink" title="安卓 IOS"></a>安卓 IOS</h4><p>因为我用的是KMP Compose material3组件中提供了<code>Scaffold</code>组件，我们可以通过设置<code>paddingValues</code>来调整边距</p>
-<blockquote>
-<p>Scaffold 的content 中传入的innerPadding会自动计算状态栏高度。</p>
+                <h2 id="核心问题"><a href="#核心问题" class="headerlink" title="核心问题"></a>核心问题</h2><blockquote>
+<p>bottomSheet弹出之后，点击内部的EditText，软键盘弹出时，bottomSheet会被顶起来，但是顶起来的高度不对，<br>遮挡了editText下方的组件。</p>
 </blockquote>
-<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token function">Scaffold</span><span class="token punctuation">(</span>
-    topBar <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-        <span class="token function">TopAppBar</span><span class="token punctuation">(</span>
-            title <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token function">Text</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"ComposeApp"</span></span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-            backgroundColor <span class="token operator">=</span> MaterialTheme<span class="token punctuation">.</span>colors<span class="token punctuation">.</span>primary<span class="token punctuation">,</span>
-            contentColor <span class="token operator">=</span> Color<span class="token punctuation">.</span>White<span class="token punctuation">,</span>
-            elevation <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">.</span>dp
-        <span class="token punctuation">)</span>
+<h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><ol>
+<li>观看源码发现 BottomSheet已经适配了软键盘弹出的问题。 <pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin">    <span class="token function">ModalBottomSheetDialog</span><span class="token punctuation">(</span>
+    properties <span class="token operator">=</span> properties<span class="token punctuation">,</span>
+    onDismissRequest <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>sheetState<span class="token punctuation">.</span>currentValue <span class="token operator">==</span> Expanded <span class="token operator">&amp;&amp;</span> sheetState<span class="token punctuation">.</span>hasPartiallyExpandedState<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">// Smoothly animate away predictive back transformations since we are not fully</span>
+            <span class="token comment">// dismissing. We don't need to do this in the else below because we want to</span>
+            <span class="token comment">// preserve the predictive back transformations (scale) during the hide animation.</span>
+            scope<span class="token punctuation">.</span><span class="token function">launch</span> <span class="token punctuation">&#123;</span> predictiveBackProgress<span class="token punctuation">.</span><span class="token function">animateTo</span><span class="token punctuation">(</span><span class="token number">0f</span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span>
+            scope<span class="token punctuation">.</span><span class="token function">launch</span> <span class="token punctuation">&#123;</span> sheetState<span class="token punctuation">.</span><span class="token function">partialExpand</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span> <span class="token comment">// Is expanded without collapsed state or is collapsed.</span>
+            scope<span class="token punctuation">.</span><span class="token function">launch</span> <span class="token punctuation">&#123;</span> sheetState<span class="token punctuation">.</span><span class="token function">hide</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span><span class="token punctuation">.</span><span class="token function">invokeOnCompletion</span> <span class="token punctuation">&#123;</span> <span class="token function">onDismissRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
     <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    content <span class="token operator">=</span> <span class="token punctuation">&#123;</span> innerPadding<span class="token operator">-></span>
-        <span class="token comment">// 设置paddingValues</span>
-        <span class="token function">Column</span><span class="token punctuation">(</span>
-            modifier <span class="token operator">=</span> Modifier<span class="token punctuation">.</span><span class="token function">padding</span><span class="token punctuation">(</span>innerPadding<span class="token punctuation">)</span>
-        <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token comment">// 设置内容</span>
-        <span class="token punctuation">&#125;</span>
+    predictiveBackProgress <span class="token operator">=</span> predictiveBackProgress<span class="token punctuation">,</span>
+<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//这里已经加入了imePadding</span>
+    <span class="token function">Box</span><span class="token punctuation">(</span>modifier <span class="token operator">=</span> Modifier<span class="token punctuation">.</span><span class="token function">fillMaxSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">imePadding</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">semantics</span> <span class="token punctuation">&#123;</span> isTraversalGroup <span class="token operator">=</span> <span class="token boolean">true</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">Scrim</span><span class="token punctuation">(</span>
+            color <span class="token operator">=</span> scrimColor<span class="token punctuation">,</span>
+            onDismissRequest <span class="token operator">=</span> animateToDismiss<span class="token punctuation">,</span>
+            visible <span class="token operator">=</span> sheetState<span class="token punctuation">.</span>targetValue <span class="token operator">!=</span> Hidden<span class="token punctuation">,</span>
+        <span class="token punctuation">)</span>
+        <span class="token function">ModalBottomSheetContent</span><span class="token punctuation">(</span>
+            predictiveBackProgress<span class="token punctuation">,</span>
+            scope<span class="token punctuation">,</span>
+            animateToDismiss<span class="token punctuation">,</span>
+            settleToDismiss<span class="token punctuation">,</span>
+            modifier<span class="token punctuation">,</span>
+            sheetState<span class="token punctuation">,</span>
+            sheetMaxWidth<span class="token punctuation">,</span>
+            shape<span class="token punctuation">,</span>
+            containerColor<span class="token punctuation">,</span>
+            contentColor<span class="token punctuation">,</span>
+            tonalElevation<span class="token punctuation">,</span>
+            dragHandle<span class="token punctuation">,</span>
+            contentWindowInsets<span class="token punctuation">,</span>
+            content
+        <span class="token punctuation">)</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<blockquote>
-<p>如果想要让组件显示在状态栏之下，可以通过设置传入一个自定义的空的WindowInsets来实现 传给<br><code>contentWindowInsets</code>即可 </p>
-</blockquote>
-<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token annotation builtin">@Composable</span>
-<span class="token keyword">fun</span> <span class="token function">Scaffold</span><span class="token punctuation">(</span>
-    modifier<span class="token operator">:</span> Modifier <span class="token operator">=</span> Modifier<span class="token punctuation">,</span>
-    topBar<span class="token operator">:</span> <span class="token annotation builtin">@Composable</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> Unit <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    bottomBar<span class="token operator">:</span> <span class="token annotation builtin">@Composable</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> Unit <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    snackbarHost<span class="token operator">:</span> <span class="token annotation builtin">@Composable</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> Unit <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    floatingActionButton<span class="token operator">:</span> <span class="token annotation builtin">@Composable</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> Unit <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    floatingActionButtonPosition<span class="token operator">:</span> FabPosition <span class="token operator">=</span> FabPosition<span class="token punctuation">.</span>End<span class="token punctuation">,</span>
-    containerColor<span class="token operator">:</span> Color <span class="token operator">=</span> MaterialTheme<span class="token punctuation">.</span>colorScheme<span class="token punctuation">.</span>background<span class="token punctuation">,</span>
-    contentColor<span class="token operator">:</span> Color <span class="token operator">=</span> <span class="token function">contentColorFor</span><span class="token punctuation">(</span>containerColor<span class="token punctuation">)</span><span class="token punctuation">,</span>
-    contentWindowInsets<span class="token operator">:</span> WindowInsets <span class="token operator">=</span> ScaffoldDefaults<span class="token punctuation">.</span>contentWindowInsets<span class="token punctuation">,</span>
-    content<span class="token operator">:</span> <span class="token annotation builtin">@Composable</span> <span class="token punctuation">(</span>PaddingValues<span class="token punctuation">)</span> <span class="token operator">-></span> Unit
-<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="/../images/2024-10-17-KMP%E9%80%82%E9%85%8D%20android%20ios%20%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F_1.png" alt="深色模式下适配情况"></p>
-<h3 id="3-适配-light-和-dark主题下-背景颜色下-状态栏文字颜色是否可见"><a href="#3-适配-light-和-dark主题下-背景颜色下-状态栏文字颜色是否可见" class="headerlink" title="3. 适配 light 和 dark主题下 背景颜色下 状态栏文字颜色是否可见"></a>3. 适配 light 和 dark主题下 背景颜色下 状态栏文字颜色是否可见</h3><blockquote>
-<p>还没做</p>
-</blockquote>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ol>
-<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7373860164557209634#heading-2">Jetpack Compose System UI 兼容以及沉浸式状态栏</a></li>
-<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/78190854/status-bar-color-change-in-compose-multiplatform">Status Bar Color Change in Compose Multiplatform</a></li>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>但是在使用的时候，偏移的高度并不是整个键盘的高度 <pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin">      <span class="token keyword">val</span> newAnchors <span class="token operator">=</span> DraggableAnchors <span class="token punctuation">&#123;</span>
+    Hidden at fullHeight
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>
+        sheetSize<span class="token punctuation">.</span>height <span class="token operator">></span> <span class="token punctuation">(</span>fullHeight <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>sheetState<span class="token punctuation">.</span>skipPartiallyExpanded
+    <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 如果sheetSize.height大于fullHeight / 2  就把 partiallyExpanded 设置为 fullHeight / 2</span>
+        PartiallyExpanded at fullHeight <span class="token operator">/</span> <span class="token number">2f</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>sheetSize<span class="token punctuation">.</span>height <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        Expanded at <span class="token function">max</span><span class="token punctuation">(</span><span class="token number">0f</span><span class="token punctuation">,</span> fullHeight <span class="token operator">-</span> sheetSize<span class="token punctuation">.</span>height<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>解决办法<br> 我们并不需要这个部分展开的状态限制 <pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin">    <span class="token keyword">val</span> bottomSheetState <span class="token operator">=</span> <span class="token function">rememberModalBottomSheetState</span><span class="token punctuation">(</span>
+    skipPartiallyExpanded <span class="token operator">=</span> <span class="token boolean">true</span>
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
 </ol>
 
                 
@@ -595,7 +574,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wenvelope.github.io/2024/109a48dbf2.html">https://wenvelope.github.io/2024/109a48dbf2.html</a>
+                    <a href="https://wenvelope.github.io/2024/11ab6f0627.html">https://wenvelope.github.io/2024/11ab6f0627.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -639,6 +618,10 @@
                             
                                 <a href="/tags/kotlin-multiplatform/">
                                     <span class="chip bg-color">kotlin multiplatform</span>
+                                </a>
+                            
+                                <a href="/tags/keyboard/">
+                                    <span class="chip bg-color">keyboard</span>
                                 </a>
                             
                         </div>
@@ -1078,9 +1061,67 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2024/11ab6f0627.html">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="bottomSheet软键盘弹出问题">
+                        
+                        <span class="card-title">bottomSheet软键盘弹出问题</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            KMP 踩坑日记 bottomSheet软键盘弹出问题
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/KMP/" class="post-category">
+                                    KMP
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/android-studio/">
+                        <span class="chip bg-color">android studio</span>
+                    </a>
+                    
+                    <a href="/tags/kotlin-multiplatform/">
+                        <span class="chip bg-color">kotlin multiplatform</span>
+                    </a>
+                    
+                    <a href="/tags/keyboard/">
+                        <span class="chip bg-color">keyboard</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2024/1176c7cf6e.html">
                     <div class="card-image">
@@ -1097,9 +1138,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-11-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1125,62 +1166,6 @@
                     
                     <a href="/tags/room/">
                         <span class="chip bg-color">room</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2024/102ce92906.html">
-                    <div class="card-image">
-                        
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="黑苹果启动安卓虚拟机失败解决办法">
-                        
-                        <span class="card-title">黑苹果启动安卓虚拟机失败解决办法</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            每次设置之前需要清零
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-15
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE/" class="post-category">
-                                    开发工具配置
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/">
-                        <span class="chip bg-color">黑苹果</span>
-                    </a>
-                    
-                    <a href="/tags/android-studio/">
-                        <span class="chip bg-color">android studio</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%AE%89%E5%8D%93%E8%99%9A%E6%8B%9F%E6%9C%BA/">
-                        <span class="chip bg-color">安卓虚拟机</span>
                     </a>
                     
                 </div>

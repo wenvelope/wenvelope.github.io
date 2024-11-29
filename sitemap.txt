@@ -1,3 +1,4 @@
+https://wenvelope.github.io/2024/11ab6f0627.html
 https://wenvelope.github.io/2024/1176c7cf6e.html
 https://wenvelope.github.io/2024/109a48dbf2.html
 https://wenvelope.github.io/2024/102ce92906.html
@@ -74,6 +75,7 @@ https://wenvelope.github.io/tags/android-studio/
 https://wenvelope.github.io/tags/%E5%AE%89%E5%8D%93%E8%99%9A%E6%8B%9F%E6%9C%BA/
 https://wenvelope.github.io/tags/kotlin-multiplatform/
 https://wenvelope.github.io/tags/room/
+https://wenvelope.github.io/tags/keyboard/
 https://wenvelope.github.io/categories/android/
 https://wenvelope.github.io/categories/%E7%AE%97%E6%B3%95/
 https://wenvelope.github.io/categories/Linux/
@@ -82,5 +84,4 @@ https://wenvelope.github.io/categories/Kotlin/
 https://wenvelope.github.io/categories/%E5%90%8E%E7%AB%AF/
 https://wenvelope.github.io/categories/pyqt/
 https://wenvelope.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE/
-https://wenvelope.github.io/categories/KMP%E5%BC%80%E5%8F%91%E5%A1%AB%E5%9D%91/
-https://wenvelope.github.io/categories/KMP-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B0%83%E8%AF%95/
+https://wenvelope.github.io/categories/KMP/

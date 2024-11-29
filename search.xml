@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>bottomSheet软键盘弹出问题</title>
+      <link href="/2024/11ab6f0627.html"/>
+      <url>/2024/11ab6f0627.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="核心问题"><a href="#核心问题" class="headerlink" title="核心问题"></a>核心问题</h2><blockquote><p>bottomSheet弹出之后，点击内部的EditText，软键盘弹出时，bottomSheet会被顶起来，但是顶起来的高度不对，<br>遮挡了editText下方的组件。</p></blockquote><h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><ol><li>观看源码发现 BottomSheet已经适配了软键盘弹出的问题。 <pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin">    <span class="token function">ModalBottomSheetDialog</span><span class="token punctuation">(</span>    properties <span class="token operator">=</span> properties<span class="token punctuation">,</span>    onDismissRequest <span class="token operator">=</span> <span class="token punctuation">&#123;</span>        <span class="token keyword">if</span> <span class="token punctuation">(</span>sheetState<span class="token punctuation">.</span>currentValue <span class="token operator">==</span> Expanded <span class="token operator">&amp;&amp;</span> sheetState<span class="token punctuation">.</span>hasPartiallyExpandedState<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>            <span class="token comment">// Smoothly animate away predictive back transformations since we are not fully</span>            <span class="token comment">// dismissing. We don't need to do this in the else below because we want to</span>            <span class="token comment">// preserve the predictive back transformations (scale) during the hide animation.</span>            scope<span class="token punctuation">.</span><span class="token function">launch</span> <span class="token punctuation">&#123;</span> predictiveBackProgress<span class="token punctuation">.</span><span class="token function">animateTo</span><span class="token punctuation">(</span><span class="token number">0f</span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span>            scope<span class="token punctuation">.</span><span class="token function">launch</span> <span class="token punctuation">&#123;</span> sheetState<span class="token punctuation">.</span><span class="token function">partialExpand</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span>        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span> <span class="token comment">// Is expanded without collapsed state or is collapsed.</span>            scope<span class="token punctuation">.</span><span class="token function">launch</span> <span class="token punctuation">&#123;</span> sheetState<span class="token punctuation">.</span><span class="token function">hide</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span><span class="token punctuation">.</span><span class="token function">invokeOnCompletion</span> <span class="token punctuation">&#123;</span> <span class="token function">onDismissRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span>        <span class="token punctuation">&#125;</span>    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>    predictiveBackProgress <span class="token operator">=</span> predictiveBackProgress<span class="token punctuation">,</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>    <span class="token comment">//这里已经加入了imePadding</span>    <span class="token function">Box</span><span class="token punctuation">(</span>modifier <span class="token operator">=</span> Modifier<span class="token punctuation">.</span><span class="token function">fillMaxSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">imePadding</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">semantics</span> <span class="token punctuation">&#123;</span> isTraversalGroup <span class="token operator">=</span> <span class="token boolean">true</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>        <span class="token function">Scrim</span><span class="token punctuation">(</span>            color <span class="token operator">=</span> scrimColor<span class="token punctuation">,</span>            onDismissRequest <span class="token operator">=</span> animateToDismiss<span class="token punctuation">,</span>            visible <span class="token operator">=</span> sheetState<span class="token punctuation">.</span>targetValue <span class="token operator">!=</span> Hidden<span class="token punctuation">,</span>        <span class="token punctuation">)</span>        <span class="token function">ModalBottomSheetContent</span><span class="token punctuation">(</span>            predictiveBackProgress<span class="token punctuation">,</span>            scope<span class="token punctuation">,</span>            animateToDismiss<span class="token punctuation">,</span>            settleToDismiss<span class="token punctuation">,</span>            modifier<span class="token punctuation">,</span>            sheetState<span class="token punctuation">,</span>            sheetMaxWidth<span class="token punctuation">,</span>            shape<span class="token punctuation">,</span>            containerColor<span class="token punctuation">,</span>            contentColor<span class="token punctuation">,</span>            tonalElevation<span class="token punctuation">,</span>            dragHandle<span class="token punctuation">,</span>            contentWindowInsets<span class="token punctuation">,</span>            content        <span class="token punctuation">)</span>    <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li><li>但是在使用的时候，偏移的高度并不是整个键盘的高度 <pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin">      <span class="token keyword">val</span> newAnchors <span class="token operator">=</span> DraggableAnchors <span class="token punctuation">&#123;</span>    Hidden at fullHeight    <span class="token keyword">if</span> <span class="token punctuation">(</span>        sheetSize<span class="token punctuation">.</span>height <span class="token operator">></span> <span class="token punctuation">(</span>fullHeight <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>sheetState<span class="token punctuation">.</span>skipPartiallyExpanded    <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>        <span class="token comment">// 如果sheetSize.height大于fullHeight / 2  就把 partiallyExpanded 设置为 fullHeight / 2</span>        PartiallyExpanded at fullHeight <span class="token operator">/</span> <span class="token number">2f</span>    <span class="token punctuation">&#125;</span>    <span class="token keyword">if</span> <span class="token punctuation">(</span>sheetSize<span class="token punctuation">.</span>height <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>        Expanded at <span class="token function">max</span><span class="token punctuation">(</span><span class="token number">0f</span><span class="token punctuation">,</span> fullHeight <span class="token operator">-</span> sheetSize<span class="token punctuation">.</span>height<span class="token punctuation">)</span>    <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li><li>解决办法<br> 我们并不需要这个部分展开的状态限制 <pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin">    <span class="token keyword">val</span> bottomSheetState <span class="token operator">=</span> <span class="token function">rememberModalBottomSheetState</span><span class="token punctuation">(</span>    skipPartiallyExpanded <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> KMP </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> android studio </tag>
+            
+            <tag> kotlin multiplatform </tag>
+            
+            <tag> keyboard </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>KMP Android Database Inspector 不能在线链接数据库</title>
       <link href="/2024/1176c7cf6e.html"/>
       <url>/2024/1176c7cf6e.html</url>
@@ -13,7 +42,7 @@
       
       <categories>
           
-          <category> KMP 数据库调试 </category>
+          <category> KMP </category>
           
       </categories>
       
@@ -42,7 +71,7 @@
       
       <categories>
           
-          <category> KMP开发填坑 </category>
+          <category> KMP </category>
           
       </categories>
       
