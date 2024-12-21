@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>安卓sdk版本警告</title>
+      <link href="/2024/12e8cf33d5.html"/>
+      <url>/2024/12e8cf33d5.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="核心问题"><a href="#核心问题" class="headerlink" title="核心问题"></a>核心问题</h2><pre class="line-numbers language-none"><code class="language-none">Warning: This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>通常是由于Android Studio的sdk版本和compileSdkVersion不一致导致的，可以通过修改sdkManager中的sdk版本和manifest中的compileSdkVersion来解决这个问题。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> android </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> android studio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>bottomSheet软键盘弹出问题</title>
       <link href="/2024/11ab6f0627.html"/>
       <url>/2024/11ab6f0627.html</url>
