@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>ktor模版启动报错ReloadingException</title>
+      <link href="/2025/095574051f.html"/>
+      <url>/2025/095574051f.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在使用ktor官方模版启动项目时，报错如下： 原封不动的运行 会报错</p><pre class="line-numbers language-none"><code class="language-none">Exception in thread &quot;main&quot; io.ktor.server.config.HoconApplicationConfig$ReloadingException<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>代码片段</p><pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>    <span class="token function">embeddedServer</span><span class="token punctuation">(</span>Netty<span class="token punctuation">,</span> port <span class="token operator">=</span> SERVER_PORT<span class="token punctuation">,</span> host <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"0.0.0.0"</span></span><span class="token punctuation">,</span> module <span class="token operator">=</span> Application<span class="token operator">::</span>module<span class="token punctuation">)</span>        <span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span>wait <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token keyword">fun</span> Application<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>    routing <span class="token punctuation">&#123;</span>        <span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"/"</span></span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>            call<span class="token punctuation">.</span><span class="token function">respondText</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Ktor: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span><span class="token expression"><span class="token function">Greeting</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">greet</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>        <span class="token punctuation">&#125;</span>    <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><blockquote><p>找了一遍google 发现都是mainClass设置错了 但是我这个不一样 完全没动会报这个错 非常之抽象</p></blockquote><h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><blockquote><p>module 扩展方法加上<code>suspend</code>关键字 解决 </p></blockquote><pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">suspend</span> <span class="token keyword">fun</span> Application<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>    routing <span class="token punctuation">&#123;</span>        <span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"/"</span></span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>            call<span class="token punctuation">.</span><span class="token function">respondText</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Ktor: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span><span class="token expression"><span class="token function">Greeting</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">greet</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>        <span class="token punctuation">&#125;</span>    <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 后端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ktor </tag>
+            
+            <tag> backend </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>安卓sdk版本警告</title>
       <link href="/2024/12e8cf33d5.html"/>
       <url>/2024/12e8cf33d5.html</url>
