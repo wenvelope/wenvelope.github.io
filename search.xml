@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>docker构建时DNS解析问题</title>
+      <link href="/2025/10c2050474.html"/>
+      <url>/2025/10c2050474.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在macos上使用colima启动docker时，遇到DNS解析问题，导致容器内打包失败</p><h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>在colima启动时，指定DNS服务器地址</p><pre class="line-numbers language-bashbash" data-language="bashbash"><code class="language-bashbash">colima start --dns 8.8.8.8,1.1.1.1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 后端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ktor </tag>
+            
+            <tag> docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>ktor模版启动报错ReloadingException</title>
       <link href="/2025/095574051f.html"/>
       <url>/2025/095574051f.html</url>
