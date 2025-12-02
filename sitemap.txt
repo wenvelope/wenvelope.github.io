@@ -1,3 +1,4 @@
+https://wenvelope.github.io/2025/127c71956a.html
 https://wenvelope.github.io/2025/10c2050474.html
 https://wenvelope.github.io/2025/095574051f.html
 https://wenvelope.github.io/2024/109a48dbf2.html
@@ -82,6 +83,8 @@ https://wenvelope.github.io/tags/keyboard/
 https://wenvelope.github.io/tags/ktor/
 https://wenvelope.github.io/tags/backend/
 https://wenvelope.github.io/tags/docker/
+https://wenvelope.github.io/tags/FFT/
+https://wenvelope.github.io/tags/DFT/
 https://wenvelope.github.io/categories/android/
 https://wenvelope.github.io/categories/%E7%AE%97%E6%B3%95/
 https://wenvelope.github.io/categories/Linux/
